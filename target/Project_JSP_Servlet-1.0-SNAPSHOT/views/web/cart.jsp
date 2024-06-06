@@ -61,7 +61,7 @@
             </button>
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
-                    <a href="./Home.jsp" class="nav-item nav-link active">Home</a>
+                    <a href="../../index.jsp" class="nav-item nav-link active">Home</a>
                     <a href="./shop.jsp" class="nav-item nav-link">Shop</a>
                     <a href="shop-detail.jsp" class="nav-item nav-link">Shop Detail</a>
                     <div class="nav-item dropdown">

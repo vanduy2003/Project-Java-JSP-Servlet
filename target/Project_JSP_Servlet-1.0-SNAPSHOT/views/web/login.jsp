@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,21 +8,21 @@
 <section>
     <div class="form-box">
         <div class="form-value">
-            <form action="login" method="post">
+            <form action="LoginServlet" method="post">
                 <h2>Login</h2>
                 <div class="inputbox">
                     <ion-icon name="mail-outline"></ion-icon>
                     <input type="email" name="email" required>
-                    <label for="">Email</label>
+                    <label>Email</label>
                 </div>
                 <div class="inputbox">
                     <ion-icon name="lock-closed-outline"></ion-icon>
                     <input type="password" name="password" required>
-                    <label for="">Password</label>
+                    <label>Password</label>
                 </div>
                 <div class="forget justify-content-between">
-                    <label for=""><input type="checkbox">Remember Me</label>
-                    <label for=""><a href="#">Forget Password?</a></label>
+                    <label><input type="checkbox">Remember Me</label>
+                    <label><a href="#">Forget Password?</a></label>
                 </div>
                 <button type="submit">Log in</button>
                 <div class="register">
