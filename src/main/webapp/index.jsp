@@ -88,7 +88,7 @@
                             <i class="fas fa-user fa-2x text-white"></i>
                         </button>
                         <ul class="dropdown-menu text-center login-margin">
-                            <li><a class="dropdown-item" href="views/web/login.jsp">Login</a></li>
+                            <li><a class="dropdown-item" href="dang-nhap">Login</a></li>
                             <li><a class="dropdown-item" href="">Sign Out</a></li>
                         </ul>
                     </div>

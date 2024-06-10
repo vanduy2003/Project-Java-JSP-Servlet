@@ -132,8 +132,8 @@
                 <h2>Login</h2>
                 <div class="inputbox">
                     <ion-icon name="mail-outline"></ion-icon>
-                    <input type="text" name="phone" required>
-                    <label>Phone</label>
+                    <input type="email" name="email" required>
+                    <label>Email</label>
                 </div>
                 <div class="inputbox">
                     <ion-icon name="lock-closed-outline"></ion-icon>
@@ -142,11 +142,11 @@
                 </div>
                 <div class="forget justify-content-between">
                     <label><input type="checkbox">Remember Me</label>
-                    <label><a href="#">Forget Password?</a></label>
+                    <label><a href="quen-mat-khau">Forget Password?</a></label>
                 </div>
                 <button type="submit">Log in</button>
                 <div class="register">
-                    <p>Don't have an account? <a href="#">Register</a></p>
+                    <p>Don't have an account? <a href="dang-ky">Register</a></p>
                 </div>
             </form>
         </div>

@@ -22,14 +22,14 @@ public class AuthController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String phone = req.getParameter("phone");
+        String email = req.getParameter("email");
         String password = req.getParameter("password");
-        System.out.println("Check phone" + phone);
+        System.out.println("Check phone" + email);
         System.out.println("Check password" + password);
         // check phone and password != null hay khong
-        if (phone != null && password != null) {
+        if (email != null && password != null) {
             try {
-                Boolean check =  Auth.getInstance().checkLogin(phone, password);
+                Boolean check =  Auth.getInstance().checkLogin(email, password);
                 if (check) {
                     // login success
                     resp.sendRedirect("/Project_JSP_Servlet_war_exploded/");
