@@ -88,9 +88,35 @@
                             <i class="fas fa-user fa-2x text-white"></i>
                         </button>
                         <ul class="dropdown-menu text-center login-margin">
+                            <%
+                                HttpSession sc = request.getSession();
+                                String IDUser = (String) sc.getAttribute("IDUser");
+                                String fullname = (String) sc.getAttribute("fullname");
+                            %>
+
+                            <li>
+                                <%
+                                    if (IDUser != null) {
+                                        out.print(fullname != null ? fullname : "");
+                                    }
+                                %>
+                            </li>
+
+                            <%
+                                if (IDUser != null) {
+                                    // If IDUser is not null, show Sign Out
+                            %>
+                            <li><a class="dropdown-item" href="signout">Sign Out</a></li>
+                            <%
+                            } else {
+                                // If IDUser is null, show Login
+                            %>
                             <li><a class="dropdown-item" href="dang-nhap">Login</a></li>
-                            <li><a class="dropdown-item" href="">Sign Out</a></li>
+                            <%
+                                }
+                            %>
                         </ul>
+
                     </div>
                 </div>
             </div>

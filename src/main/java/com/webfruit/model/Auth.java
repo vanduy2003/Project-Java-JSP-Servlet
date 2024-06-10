@@ -1,5 +1,6 @@
 package com.webfruit.model;
 import java.sql.*;
+import com.webfruit.dao.User;
 
 public class Auth {
     private static Auth instance;
@@ -13,21 +14,49 @@ public class Auth {
         }
         return instance;
     }
-    public boolean checkLogin(String email, String password) {
-        String query = "SELECT * FROM nguoi_dung WHERE email = ? AND mat_khau = ?";
-
-        try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, email);
-            pst.setString(2, password);
-
-            try (ResultSet rs = pst.executeQuery()) {
-                return rs.next();
+    public String checkLogin(String email, String password) {
+        try  {
+            String query = String.format("SELECT ID FROM nguoi_dung WHERE email = '%s' AND mat_khau = '%s'", email, password);
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            // tra ve ca ID cua nguoi dung
+            if (rs.next()) {
+                return rs.getString("ID");
+            } else {
+                return "Email hoặc mật khẩu không đúng";
             }
+
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false;
+            return "Vui lòng đăng nhập lại sau, đã xảy ra lỗi phía Server";
         }
     }
+
+    public User getUserByID (String ID) {
+        try {
+            String query = String.format("SELECT * FROM nguoi_dung WHERE ID = '%d'", Integer.parseInt(ID));
+            Statement st = connection.createStatement();
+            ResultSet res = st.executeQuery(query);
+            while (res.next()) {
+               User user = new User();
+               user.setTen(res.getString("ten"));
+                user.setHo_dem(res.getString("ho_dem"));
+                user.setHo_va_ten(res.getString("ho_va_ten"));
+                user.setSo_dien_thoai(res.getString("so_dien_thoai"));
+                user.setEmail(res.getString("email"));
+                user.setMat_khau("");
+                user.setDia_chi(res.getString("dia_chi"));
+                user.setNgay_sinh(res.getDate("ngay_sinh"));
+                user.setChi_tieu(res.getFloat("chi_tieu"));
+                return user;
+            }
+            return null;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
 
     public boolean registerUser(String username, String email, String phone, String password) {
         String query = "INSERT INTO nguoi_dung (ho_dem, ten, so_dien_thoai, email, mat_khau) VALUES (?, ?, ?, ?, ?)";

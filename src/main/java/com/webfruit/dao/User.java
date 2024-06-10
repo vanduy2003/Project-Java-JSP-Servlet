@@ -13,6 +13,9 @@ public class User {
     private String mat_khau;
     private String dia_chi;
 
+    public User() {
+    }
+
     public User(String ho_dem, String ho_va_ten, String ten, String so_dien_thoai, Date ngay_sinh, float chi_tieu, String mat_khau, String email, String dia_chi) {
         this.ho_dem = ho_dem;
         this.ho_va_ten = ho_va_ten;
