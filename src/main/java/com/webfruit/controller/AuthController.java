@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.webfruit.model.Auth;
+import jakarta.servlet.http.HttpSession;
 
-
-@WebServlet(name = "dang-nhap", urlPatterns = {"/dang-nhap"})
+@WebServlet(name = "dang-nhap", urlPatterns = { "/dang-nhap" })
 public class AuthController extends HttpServlet {
     public AuthController() {
         super();
@@ -30,8 +30,8 @@ public class AuthController extends HttpServlet {
 
         if (email != null && password != null) {
             try {
-                Boolean check = Auth.getInstance().checkLogin(email, password);
-                if (check) {
+                String check = Auth.getInstance().checkLogin(email, password);
+                if (Integer.parseInt(check) > 0){
                     // login success
                     req.setAttribute("title", "Thành công");
                     req.setAttribute("message", "Đăng nhập thành công!");
@@ -47,7 +47,6 @@ public class AuthController extends HttpServlet {
                     req.setAttribute("icon", "close-circle");
                     req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
                 }
-
 
             } catch (Exception e) {
                 System.out.println("Đã xảy ra lỗi khi đăng nhập!");
