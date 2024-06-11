@@ -116,6 +116,73 @@
         .register p a:hover{
             text-decoration: underline;
         }
+        /* Toast styles */
+        #toast {
+            visibility: hidden;
+            max-width: 350px;
+            background-color: #fff;
+            color: #333;
+            text-align: left;
+            border-radius: 5px;
+            position: fixed;
+            z-index: 1;
+            bottom: 30px;
+            right: 30px;
+            font-size: 16px;
+            white-space: nowrap;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        #toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        #toast ion-icon {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        #toast.success {
+            border-left: 4px solid green;
+        }
+        #toast.success ion-icon {
+            color: green;
+        }
+        #toast.success .toast-title {
+            color: green;
+        }
+        #toast.error {
+            border-left: 4px solid red;
+        }
+        #toast.error ion-icon {
+            color: red;
+        }
+        #toast.error .toast-title {
+            color: red;
+        }
+        #toast .toast-title {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
     </style>
 </head>
 <body>
@@ -153,16 +220,60 @@
                 <div class="register">
                     <p>You already have an account? <a href="dang-nhap">Login</a></p>
                 </div>
-                <div class="error">
-                    <p style="color: red;">
-                        <%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
-                    </p>
-                </div>
             </form>
         </div>
     </div>
 </section>
+
+<!-- Toast container -->
+<div id="toast">
+    <ion-icon name=""></ion-icon>
+    <div>
+        <div class="toast-title"></div>
+        <div class="toast-message"></div>
+    </div>
+</div>
+
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const toast = document.getElementById("toast");
+        const icon = toast.querySelector("ion-icon");
+        const title = toast.querySelector(".toast-title");
+        const message = toast.querySelector(".toast-message");
+
+        const toastMessage = '<%= request.getAttribute("message") %>';
+        const toastTitle = '<%= request.getAttribute("title") %>';
+        const toastIcon = '<%= request.getAttribute("icon") %>';
+        const messageType = '<%= request.getAttribute("messageType") %>';
+        const redirect = '<%= request.getAttribute("redirect") %>';
+
+        if (toastMessage && toastTitle && toastIcon) {
+            icon.setAttribute("name", toastIcon);
+            title.textContent = toastTitle;
+            message.textContent = toastMessage;
+
+            // Remove all previous messageType classes
+            toast.classList.remove("success", "error");
+
+            // Add the current messageType class
+            if (messageType) {
+                toast.classList.add(messageType);
+            }
+
+            toast.classList.add("show");
+
+            // Remove the show class after 3 seconds
+            setTimeout(function() {
+                toast.classList.remove("show");
+                if (redirect === "true") {
+                    window.location.href = "/Project_JSP_Servlet_war_exploded/";
+                }
+            }, 3000);
+        }
+    });
+
+</script>
 </body>
 </html>

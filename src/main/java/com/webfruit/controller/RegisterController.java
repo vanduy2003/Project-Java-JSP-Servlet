@@ -36,22 +36,43 @@ public class RegisterController extends HttpServlet {
                 try {
                     boolean success = Auth.getInstance().registerUser(username, email, phone, password);
                     if (success) {
-                        resp.sendRedirect("dang-nhap");
+                        req.setAttribute("title", "Thành công");
+                        req.setAttribute("message", "Đăng ký thành công!");
+                        req.setAttribute("messageType", "success");
+                        req.setAttribute("icon", "checkmark-circle");
+                        req.setAttribute("redirect", true);
+                        req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
                     } else {
-                        req.setAttribute("error", "Registration failed!");
+                        req.setAttribute("title", "Thất bại");
+                        req.setAttribute("message", "Đăng ký thất bại!");
+                        req.setAttribute("messageType", "error");
+                        req.setAttribute("icon", "close-circle");
+                        req.setAttribute("redirect", false);
                         req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    req.setAttribute("error", "An error occurred during registration!");
+                    req.setAttribute("title", "Lỗi");
+                    req.setAttribute("message", "Có lỗi xảy ra trong quá trình đăng ký!");
+                    req.setAttribute("messageType", "error");
+                    req.setAttribute("icon", "close-circle");
+                    req.setAttribute("redirect", false);
                     req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
                 }
             } else {
-                req.setAttribute("error", "Please confirm your password again");
+                req.setAttribute("title", "Lỗi");
+                req.setAttribute("message", "Vui lòng xác nhận lại mật khẩu");
+                req.setAttribute("messageType", "error");
+                req.setAttribute("icon", "close-circle");
+                req.setAttribute("redirect", false);
                 req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
             }
         } else {
-            req.setAttribute("error", "All fields are required!");
+            req.setAttribute("title", "Lỗi");
+            req.setAttribute("message", "Tất cả các trường đều bắt buộc!");
+            req.setAttribute("messageType", "error");
+            req.setAttribute("icon", "close-circle");
+            req.setAttribute("redirect", false);
             req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
         }
     }

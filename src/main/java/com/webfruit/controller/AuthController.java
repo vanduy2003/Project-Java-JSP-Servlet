@@ -1,5 +1,6 @@
 package com.webfruit.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,25 +25,46 @@ public class AuthController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        System.out.println("Check phone" + email);
+        System.out.println("Check email" + email);
         System.out.println("Check password" + password);
-        // check phone and password != null hay khong
+
         if (email != null && password != null) {
             try {
-                Boolean check =  Auth.getInstance().checkLogin(email, password);
+                Boolean check = Auth.getInstance().checkLogin(email, password);
                 if (check) {
                     // login success
-                    resp.sendRedirect("/Project_JSP_Servlet_war_exploded/");
+                    req.setAttribute("title", "Thành công");
+                    req.setAttribute("message", "Đăng nhập thành công!");
+                    req.setAttribute("messageType", "success");
+                    req.setAttribute("icon", "checkmark-circle");
+                    req.setAttribute("redirect", true);
+                    req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
                 } else {
-                    log("Đăng nhập thất bại!");
+                    // login failure
+                    req.setAttribute("title", "Thất bại");
+                    req.setAttribute("message", "Đăng nhập thất bại. Vui lòng thử lại.");
+                    req.setAttribute("messageType", "error");
+                    req.setAttribute("icon", "close-circle");
+                    req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
                 }
-            }catch (Exception e) {
+
+
+            } catch (Exception e) {
                 System.out.println("Đã xảy ra lỗi khi đăng nhập!");
                 e.printStackTrace();
+                req.setAttribute("title", "Lỗi");
+                req.setAttribute("message", "Đã xảy ra lỗi. Vui lòng thử lại.");
+                req.setAttribute("messageType", "error");
+                req.setAttribute("icon", "alert-circle");
+                req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
             }
         } else {
-            // phone or password is null
-            resp.sendRedirect("/dang-nhap");
+            // email hoặc password null
+            req.setAttribute("title", "Lỗi");
+            req.setAttribute("message", "Email và mật khẩu không được để trống.");
+            req.setAttribute("messageType", "error");
+            req.setAttribute("icon", "alert-circle");
+            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
         }
     }
 
