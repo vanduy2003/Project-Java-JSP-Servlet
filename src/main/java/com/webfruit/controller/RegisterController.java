@@ -41,7 +41,7 @@ public class RegisterController extends HttpServlet {
                         req.setAttribute("messageType", "success");
                         req.setAttribute("icon", "checkmark-circle");
                         req.setAttribute("redirect", true);
-                        req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+                        req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
                     } else {
                         req.setAttribute("title", "Thất bại");
                         req.setAttribute("message", "Đăng ký thất bại!");
