@@ -1,5 +1,6 @@
 package com.webfruit.controller;
 
+import com.webfruit.dao.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import com.webfruit.model.Auth;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(name = "dang-nhap", urlPatterns = { "/dang-nhap" })
+@WebServlet(name = "dang-nhap", urlPatterns = { "/dang-nhap", "/signout" })
 public class AuthController extends HttpServlet {
     public AuthController() {
         super();
@@ -18,6 +19,12 @@ public class AuthController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = req.getServletPath();// get path
+        if (path.equals("/signout")) {
+            HttpSession session = req.getSession();
+            session.removeAttribute("IDUser");
+            session.removeAttribute("fullname");
+        }
         req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
     }
 
@@ -25,20 +32,21 @@ public class AuthController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        System.out.println("Check email" + email);
-        System.out.println("Check password" + password);
-
         if (email != null && password != null) {
             try {
                 String check = Auth.getInstance().checkLogin(email, password);
-                if (Integer.parseInt(check) > 0){
+                if (Integer.parseInt(check) >= 0){
                     // login success
                     req.setAttribute("title", "Thành công");
                     req.setAttribute("message", "Đăng nhập thành công!");
                     req.setAttribute("messageType", "success");
                     req.setAttribute("icon", "checkmark-circle");
                     req.setAttribute("redirect", true);
-                    req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+                    User user = Auth.getInstance().getUserByID(check);
+                    HttpSession session = req.getSession();
+                    session.setAttribute("IDUser", check);
+                    session.setAttribute("fullname", user.getHo_va_ten());
+                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
                 } else {
                     // login failure
                     req.setAttribute("title", "Thất bại");
@@ -47,9 +55,7 @@ public class AuthController extends HttpServlet {
                     req.setAttribute("icon", "close-circle");
                     req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
                 }
-
             } catch (Exception e) {
-                System.out.println("Đã xảy ra lỗi khi đăng nhập!");
                 e.printStackTrace();
                 req.setAttribute("title", "Lỗi");
                 req.setAttribute("message", "Đã xảy ra lỗi. Vui lòng thử lại.");
@@ -63,7 +69,7 @@ public class AuthController extends HttpServlet {
             req.setAttribute("message", "Email và mật khẩu không được để trống.");
             req.setAttribute("messageType", "error");
             req.setAttribute("icon", "alert-circle");
-            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+//            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
         }
     }
 

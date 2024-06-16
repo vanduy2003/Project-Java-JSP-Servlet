@@ -19,7 +19,6 @@ public class Auth {
             String query = String.format("SELECT ID FROM nguoi_dung WHERE email = '%s' AND mat_khau = '%s'", email, password);
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
-            // tra ve ca ID cua nguoi dung
             if (rs.next()) {
                 return rs.getString("ID");
             } else {

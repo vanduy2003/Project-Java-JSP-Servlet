@@ -189,7 +189,7 @@
 <section>
     <div class="form-box">
         <div class="form-value">
-            <form action="" method="post">
+            <form action="dang-nhap" method="post">
                 <h2>Login</h2>
                 <div class="inputbox">
                     <ion-icon name="mail-outline"></ion-icon>
