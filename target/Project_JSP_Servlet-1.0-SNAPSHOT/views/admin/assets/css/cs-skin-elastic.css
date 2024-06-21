@@ -130,21 +130,7 @@ div.cs-skin-elastic {
 	content: '';
 }
 
-.cs-skin-elastic .cs-options li.flag-france span {
-	background-image: url(../img/france.svg);
-}
 
-.cs-skin-elastic .cs-options li.flag-brazil span {
-	background-image: url(../img/brazil.svg);
-}
-
-.cs-skin-elastic .cs-options li.flag-safrica span {
-	background-image: url(../img/south-africa.svg);
-}
-
-.cs-skin-elastic .cs-options li.flag-argentina span {
-	background-image: url(../img/argentina.svg);
-}
 
 @-webkit-keyframes expand { 
 	0% { -webkit-transform: scale3d(1,0,1); }

@@ -5,15 +5,17 @@ import com.webfruit.dao.User;
 public class Auth {
     private static Auth instance;
     private Connection connection;
+
+
     public Auth () throws SQLException{
         connection = DBUtil.getConnection();
     }
+
+
     public static Auth getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new Auth();
-        }
-        return instance;
+      return new Auth();
     }
+
     public String checkLogin(String email, String password) {
         try  {
             String query = String.format("SELECT ID FROM nguoi_dung WHERE email = '%s' AND mat_khau = '%s'", email, password);
@@ -43,10 +45,11 @@ public class Auth {
                 user.setHo_va_ten(res.getString("ho_va_ten"));
                 user.setSo_dien_thoai(res.getString("so_dien_thoai"));
                 user.setEmail(res.getString("email"));
-                user.setMat_khau("");
                 user.setDia_chi(res.getString("dia_chi"));
                 user.setNgay_sinh(res.getDate("ngay_sinh"));
                 user.setChi_tieu(res.getFloat("chi_tieu"));
+                user.setVai_tro(res.getString("vai_tro"));
+
                 return user;
             }
             return null;

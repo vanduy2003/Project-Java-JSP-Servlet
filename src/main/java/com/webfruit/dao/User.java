@@ -12,11 +12,12 @@ public class User {
     private String email;
     private String mat_khau;
     private String dia_chi;
+    private String vai_tro;
 
     public User() {
     }
 
-    public User(String ho_dem, String ho_va_ten, String ten, String so_dien_thoai, Date ngay_sinh, float chi_tieu, String mat_khau, String email, String dia_chi) {
+    public User(String ho_dem, String ho_va_ten, String ten, String so_dien_thoai, Date ngay_sinh, float chi_tieu, String mat_khau, String email, String dia_chi, String vai_tro) {
         this.ho_dem = ho_dem;
         this.ho_va_ten = ho_va_ten;
         this.ten = ten;
@@ -26,6 +27,15 @@ public class User {
         this.mat_khau = mat_khau;
         this.email = email;
         this.dia_chi = dia_chi;
+        this.vai_tro = vai_tro;
+    }
+
+    public String getVai_tro() {
+        return vai_tro;
+    }
+
+    public void setVai_tro(String vai_tro) {
+        this.vai_tro = vai_tro;
     }
 
     public String getHo_dem() {

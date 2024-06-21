@@ -46,6 +46,10 @@ public class AuthController extends HttpServlet {
                     HttpSession session = req.getSession();
                     session.setAttribute("IDUser", check);
                     session.setAttribute("fullname", user.getHo_va_ten());
+                    if (user.getVai_tro().equalsIgnoreCase("admin")) {
+                        resp.sendRedirect(req.getContextPath() + "/admin");
+                        return;
+                    }
                     resp.sendRedirect(req.getContextPath() + "/trang-chu");
                 } else {
                     // login failure
