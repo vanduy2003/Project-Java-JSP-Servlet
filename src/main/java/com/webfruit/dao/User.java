@@ -3,6 +3,7 @@ package com.webfruit.dao;
 import java.util.Date;
 
 public class User {
+    private int id;
     private String ho_dem;
     private String ten;
     private String ho_va_ten;
@@ -17,7 +18,8 @@ public class User {
     public User() {
     }
 
-    public User(String ho_dem, String ho_va_ten, String ten, String so_dien_thoai, Date ngay_sinh, float chi_tieu, String mat_khau, String email, String dia_chi, String vai_tro) {
+    public User(int id, String ho_dem, String ho_va_ten, String ten, String so_dien_thoai, Date ngay_sinh, float chi_tieu, String mat_khau, String email, String dia_chi, String vai_tro) {
+        this.id = id;
         this.ho_dem = ho_dem;
         this.ho_va_ten = ho_va_ten;
         this.ten = ten;
@@ -28,6 +30,14 @@ public class User {
         this.email = email;
         this.dia_chi = dia_chi;
         this.vai_tro = vai_tro;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getVai_tro() {

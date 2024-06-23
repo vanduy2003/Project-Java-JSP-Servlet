@@ -1,5 +1,6 @@
 package com.webfruit.controller;
 
+import com.sun.mail.imap.protocol.ID;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -10,11 +11,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import com.webfruit.dao.User;
-import com.webfruit.model.Auth;
+import com.webfruit.model.UserModel;
 
 
 
-@WebServlet(name = "admin", urlPatterns = {"/admin"})
+@WebServlet(name = "admin", urlPatterns = {"/admin", "/admin/quan-ly-san-pham", "/admin/quan-ly-nguoi-dung"})
 public class AdminController extends HttpServlet {
     public AdminController() {
         super();
@@ -25,19 +26,39 @@ public class AdminController extends HttpServlet {
         super.doPost(req, resp);
     }
 
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // check section xem co khong, neu co thi chuyen qua trang admin
-        // neu khong thi chuyen qua trang login
+
         HttpSession session = req.getSession();
         String IDUser = (String) session.getAttribute("IDUser");
         if (IDUser == null) {
             resp.sendRedirect(req.getContextPath() + "/dang-nhap");
             return;
         }
+        try {
+            int countUser = UserModel.getInstance().CountUser();
+            System.out.println("Count user: " + countUser);
+            req.setAttribute("countUser", countUser);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-//        User user = Auth.getInstance().getUserByID(IDUser);
 
+        // check url
+        String url = req.getRequestURI();
+        System.out.println("Get url: " + url);
+        if (url.equalsIgnoreCase(req.getContextPath() + "/admin")) {
+            req.setAttribute("home", "home");
+            req.removeAttribute("quanLySanPham");
+            req.removeAttribute("quanLyNguoiDung");
+        } else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-san-pham")) {
+            req.setAttribute("quanLySanPham", "quanLySanPham");
+            req.removeAttribute("home");
+        }else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung")) {
+            System.out.println("Quan ly nguoi dung");
+            req.setAttribute("quanLyNguoiDung", "quanLyNguoiDung");
+            req.removeAttribute("home");
+            req.removeAttribute("quanLySanPham");
+        }
         req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
     }
 
