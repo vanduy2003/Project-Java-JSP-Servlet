@@ -37,7 +37,6 @@ public class AdminController extends HttpServlet {
         }
 
 //        User user = Auth.getInstance().getUserByID(IDUser);
-
         req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
     }
 
