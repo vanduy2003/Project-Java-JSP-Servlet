@@ -17,4 +17,12 @@ public class DBUtil {
         }
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+    // close connection
+    public static void closeConnection(Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

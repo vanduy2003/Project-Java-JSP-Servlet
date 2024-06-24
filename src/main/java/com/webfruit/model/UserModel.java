@@ -18,11 +18,20 @@ public class UserModel implements CommonDao <User>{
         return new UserModel();
     }
 
+    // close connection
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     @Override
     public boolean insert(User T) {
         // insert user to database
         try {
-            String query = String.format("INSERT INTO user (ho_dem, ten, so_dien_thoai, ngay_sinh, chi_tieu, mat_khau, email, dia_chi, vai_tro) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+            String query = String.format("INSERT INTO nguoi_dung (ho_dem, ten, so_dien_thoai, ngay_sinh, chi_tieu, mat_khau, email, dia_chi, vai_tro) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                     T.getHo_dem(), T.getTen(), T.getSo_dien_thoai(), T.getNgay_sinh(), T.getChi_tieu(), T.getMat_khau(), T.getEmail(), T.getDia_chi(), T.getVai_tro());
             Statement statement = connection.createStatement();
             return statement.executeUpdate(query) > 0;
@@ -65,7 +74,32 @@ public class UserModel implements CommonDao <User>{
 
     @Override
     public ArrayList<User> selectAll() {
-        return null;
+        try {
+            String query = String.format("SELECT * FROM nguoi_dung");
+            Statement st = connection.createStatement();
+            ResultSet rt = st.executeQuery(query);
+            ArrayList<User> listUser = new ArrayList<>();
+            while (rt.next()) {
+                User user = new User();
+                user.setId(rt.getInt("id"));
+                user.setHo_dem(rt.getString("ho_dem"));
+                user.setTen(rt.getString("ten"));
+                user.setHo_va_ten(rt.getString("ho_va_ten"));
+                user.setSo_dien_thoai(rt.getString("so_dien_thoai"));
+                user.setNgay_sinh(rt.getString("ngay_sinh"));
+                user.setChi_tieu(rt.getFloat("chi_tieu"));
+                user.setMat_khau(rt.getString("mat_khau"));
+                user.setEmail(rt.getString("email"));
+                user.setDia_chi(rt.getString("dia_chi"));
+                user.setVai_tro(rt.getString("vai_tro"));
+                listUser.add(user);
+            }
+            return listUser;
+        }catch (Exception ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     public int CountUser() {

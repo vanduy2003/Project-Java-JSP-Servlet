@@ -46,7 +46,7 @@ public class Auth {
                 user.setSo_dien_thoai(res.getString("so_dien_thoai"));
                 user.setEmail(res.getString("email"));
                 user.setDia_chi(res.getString("dia_chi"));
-                user.setNgay_sinh(res.getDate("ngay_sinh"));
+                user.setNgay_sinh(res.getString("ngay_sinh"));
                 user.setChi_tieu(res.getFloat("chi_tieu"));
                 user.setVai_tro(res.getString("vai_tro"));
 
