@@ -19,7 +19,7 @@ import com.webfruit.model.Auth;
 
 
 
-@WebServlet(name = "admin", urlPatterns = {"/admin", "/admin/quan-ly-san-pham", "/admin/quan-ly-nguoi-dung", "/admin/quan-ly-nguoi-dung/add-user"})
+@WebServlet(name = "admin", urlPatterns = {"/admin", "/admin/quan-ly-san-pham", "/admin/quan-ly-nguoi-dung", "/admin/quan-ly-nguoi-dung/add-user", "/admin/quan-ly-nguoi-dung/delete"})
 public class AdminController extends HttpServlet {
     public AdminController() {
         super();
@@ -71,6 +71,15 @@ public class AdminController extends HttpServlet {
             }
 
 
+        }else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/delete")) {
+            try {
+                String id = req.getParameter("id");
+                UserModel.getInstance().delete(Integer.parseInt(id));
+                UserModel.getInstance().closeConnection();
+                resp.sendRedirect(req.getContextPath() + "/admin/quan-ly-nguoi-dung");
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

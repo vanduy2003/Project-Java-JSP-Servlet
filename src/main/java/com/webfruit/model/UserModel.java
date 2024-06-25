@@ -57,7 +57,7 @@ public class UserModel implements CommonDao <User>{
     @Override
     public boolean delete(int id) {
         try {
-            String query = String.format("DELETE FROM user WHERE id = %d", id);
+            String query = String.format("DELETE FROM nguoi_dung WHERE id = %d", id);
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
             return true;

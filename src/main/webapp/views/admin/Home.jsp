@@ -968,7 +968,7 @@
                         </div>
                         <div class="col-sm-6">
                             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                            <a href="#deleteEmployeeModal#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
                         </div>
                     </div>
                 </div>
@@ -1140,8 +1140,13 @@
                         <td><%=user.getDia_chi()%></td>
                         <td><%=user.getVai_tro()%></td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <input style="cursor: pointer" type="hidden" href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></input>
+                            <form id="deleteForm" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete" method="post">
+                                <input type="hidden" name="id" value="<%=user.getId()%>">
+                                <input type="submit" onclick="confirmDelete(event);" class="btn btn-danger" value="Delete">
+                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                            </form>
+
                         </td>
                     </tr>
                     <%
@@ -1262,7 +1267,7 @@
            <div id="deleteEmployeeModal" class="modal fade">
                <div class="modal-dialog">
                    <div class="modal-content">
-                       <form>
+                       <form method="post" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete">
                            <div class="modal-header">
                                <h4 class="modal-title">Delete Employee</h4>
                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1539,6 +1544,9 @@
             }
         });
     });
+</script>
+<script src="${pageContext.request.contextPath}/views/admin/assets/js/handle/handleQuanLyNguoiDung.js">
+
 </script>
 </body>
 </html>
