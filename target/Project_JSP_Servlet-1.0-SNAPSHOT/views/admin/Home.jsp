@@ -1,3 +1,12 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.webfruit.dao.User" %><%--
+  Created by IntelliJ IDEA.
+  User: My-PC
+  Date: 6/23/2024
+  Time: 7:30 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -19,14 +28,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="/admin/assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="/admin/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/assets/css/style.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
         #weatherWidget .currentDesc {
@@ -62,33 +79,244 @@
         #cellPaiChart{
             height: 160px;
         }
-
+        body {
+            color: #566787;
+            background: #f5f5f5;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+        .table-wrapper {
+            background: #fff;
+            padding: 20px 25px;
+            margin: 30px 0;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+        .table-title {
+            padding-bottom: 15px;
+            background: #435d7d;
+            color: #fff;
+            padding: 16px 30px;
+            margin: -20px -25px 10px;
+            border-radius: 3px 3px 0 0;
+        }
+        .table-title h2 {
+            margin: 5px 0 0;
+            font-size: 24px;
+        }
+        .table-title .btn-group {
+            float: right;
+        }
+        .table-title .btn {
+            color: #fff;
+            float: right;
+            font-size: 13px;
+            border: none;
+            min-width: 50px;
+            border-radius: 2px;
+            border: none;
+            outline: none !important;
+            margin-left: 10px;
+        }
+        .table-title .btn i {
+            float: left;
+            font-size: 21px;
+            margin-right: 5px;
+        }
+        .table-title .btn span {
+            float: left;
+            margin-top: 2px;
+        }
+        table.table tr th, table.table tr td {
+            border-color: #e9e9e9;
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+        table.table tr th:first-child {
+            width: 60px;
+        }
+        table.table tr th:last-child {
+            width: 100px;
+        }
+        table.table-striped tbody tr:nth-of-type(odd) {
+            background-color: #fcfcfc;
+        }
+        table.table-striped.table-hover tbody tr:hover {
+            background: #f5f5f5;
+        }
+        table.table th i {
+            font-size: 13px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        table.table td:last-child i {
+            opacity: 0.9;
+            font-size: 22px;
+            margin: 0 5px;
+        }
+        table.table td a {
+            font-weight: bold;
+            color: #566787;
+            display: inline-block;
+            text-decoration: none;
+            outline: none !important;
+        }
+        table.table td a:hover {
+            color: #2196F3;
+        }
+        table.table td a.edit {
+            color: #FFC107;
+        }
+        table.table td a.delete {
+            color: #F44336;
+        }
+        table.table td i {
+            font-size: 19px;
+        }
+        table.table .avatar {
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .pagination {
+            float: right;
+            margin: 0 0 5px;
+        }
+        .pagination li a {
+            border: none;
+            font-size: 13px;
+            min-width: 30px;
+            min-height: 30px;
+            color: #999;
+            margin: 0 2px;
+            line-height: 30px;
+            border-radius: 2px !important;
+            text-align: center;
+            padding: 0 6px;
+        }
+        .pagination li a:hover {
+            color: #666;
+        }
+        .pagination li.active a, .pagination li.active a.page-link {
+            background: #03A9F4;
+        }
+        .pagination li.active a:hover {
+            background: #0397d6;
+        }
+        .pagination li.disabled i {
+            color: #ccc;
+        }
+        .pagination li i {
+            font-size: 16px;
+            padding-top: 6px
+        }
+        .hint-text {
+            float: left;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        /* Custom checkbox */
+        .custom-checkbox {
+            position: relative;
+        }
+        .custom-checkbox input[type="checkbox"] {
+            opacity: 0;
+            position: absolute;
+            margin: 5px 0 0 3px;
+            z-index: 9;
+        }
+        .custom-checkbox label:before{
+            width: 18px;
+            height: 18px;
+        }
+        .custom-checkbox label:before {
+            content: '';
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: text-top;
+            background: white;
+            border: 1px solid #bbb;
+            border-radius: 2px;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+        .custom-checkbox input[type="checkbox"]:checked + label:after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 3px;
+            width: 6px;
+            height: 11px;
+            border: solid #000;
+            border-width: 0 3px 3px 0;
+            transform: inherit;
+            z-index: 3;
+            transform: rotateZ(45deg);
+        }
+        .custom-checkbox input[type="checkbox"]:checked + label:before {
+            border-color: #03A9F4;
+            background: #03A9F4;
+        }
+        .custom-checkbox input[type="checkbox"]:checked + label:after {
+            border-color: #fff;
+        }
+        .custom-checkbox input[type="checkbox"]:disabled + label:before {
+            color: #b8b8b8;
+            cursor: auto;
+            box-shadow: none;
+            background: #ddd;
+        }
+        /* Modal styles */
+        .modal .modal-dialog {
+            max-width: 400px;
+        }
+        .modal .modal-header, .modal .modal-body, .modal .modal-footer {
+            padding: 20px 30px;
+        }
+        .modal .modal-content {
+            border-radius: 3px;
+        }
+        .modal .modal-footer {
+            background: #ecf0f1;
+            border-radius: 0 0 3px 3px;
+        }
+        .modal .modal-title {
+            display: inline-block;
+        }
+        .modal .form-control {
+            border-radius: 2px;
+            box-shadow: none;
+            border-color: #dddddd;
+        }
+        .modal textarea.form-control {
+            resize: vertical;
+        }
+        .modal .btn {
+            border-radius: 2px;
+            min-width: 100px;
+        }
+        .modal form label {
+            font-weight: normal;
+        }
     </style>
 </head>
 
-<body>
+<body class="${home != null ? "" : "open"}">
 <!-- Left Panel -->
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                    <a href="${pageContext.request.contextPath}/admin"><i class="menu-icon fa fa-laptop"></i>Trang quản trị </a>
                 </li>
-                <li class="menu-title">UI element</li><!-- /.menu-title -->
+                <li class="menu-title">Các thành phần</li><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Components</a>
-                    <ul class="sub-menu children dropdown-menu">                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
-                        <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
-
-                        <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-                        <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
-                        <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
-                        <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-                        <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-                        <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-                        <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Các chức năng</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-puzzle-piece"></i><a href="${pageContext.request.contextPath}/admin/quan-ly-san-pham">Quản lý sản phẩm</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Quản lý đơn hàng</a></li>
+                        <li><i class="fa fa-bars"></i><a href="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung">Quản lý người dùng</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -101,8 +329,8 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
-                        <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.jsp">Basic Form</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.jsp">Advanced Form</a></li>
                     </ul>
                 </li>
 
@@ -154,8 +382,8 @@
     <header id="header" class="header">
         <div class="top-left">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img src="${pageContext.request.contextPath}/views/admin/images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="${pageContext.request.contextPath}/views/admin/images/logo2.png" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
             </div>
         </div>
@@ -200,7 +428,7 @@
                         <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 4 Mails</p>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="${pageContext.request.contextPath}/views/admin/images/avatar/1.jpg"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Jonathan Smith</span>
                                     <span class="time float-right">Just now</span>
@@ -208,7 +436,7 @@
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="${pageContext.request.contextPath}/views/admin/images/avatar/2.jpg"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Jack Sanders</span>
                                     <span class="time float-right">5 minutes ago</span>
@@ -216,7 +444,7 @@
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="${pageContext.request.contextPath}/views/admin/images/avatar/3.jpg"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Cheryl Wheeler</span>
                                     <span class="time float-right">10 minutes ago</span>
@@ -224,7 +452,7 @@
                                 </div>
                             </a>
                             <a class="dropdown-item media" href="#">
-                                <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                <span class="photo media-left"><img alt="avatar" src="${pageContext.request.contextPath}/views/admin/images/avatar/4.jpg"></span>
                                 <div class="message media-body">
                                     <span class="name float-left">Rachel Santos</span>
                                     <span class="time float-right">15 minutes ago</span>
@@ -237,7 +465,7 @@
 
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        <img class="user-avatar rounded-circle" src="${pageContext.request.contextPath}/views/admin/images/admin.jpg" alt="User Avatar">
                     </a>
 
                     <div class="user-menu dropdown-menu">
@@ -257,89 +485,90 @@
     <!-- /#header -->
     <!-- Content -->
     <div class="content">
-        <!-- Animated -->
-        <div class="animated fadeIn">
-            <!-- Widgets  -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-1">
-                                    <i class="pe-7s-cash"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text">$<span class="count">23569</span></div>
-                                        <div class="stat-heading">Revenue</div>
-                                    </div>
-                                </div>
+        <!-- Widgets  -->
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-1">
+                                <i class="pe-7s-cash"></i>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-2">
-                                    <i class="pe-7s-cart"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">3435</span></div>
-                                        <div class="stat-heading">Sales</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-3">
-                                    <i class="pe-7s-browser"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">349</span></div>
-                                        <div class="stat-heading">Templates</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="stat-widget-five">
-                                <div class="stat-icon dib flat-color-4">
-                                    <i class="pe-7s-users"></i>
-                                </div>
-                                <div class="stat-content">
-                                    <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">2986</span></div>
-                                        <div class="stat-heading">Clients</div>
-                                    </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text">$<span class="count">23569</span></div>
+                                    <div class="stat-heading">Doanh thu</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /Widgets -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-2">
+                                <i class="pe-7s-cart"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">3435</span></div>
+                                    <div class="stat-heading">Số đơn hàng</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-3">
+                                <i class="pe-7s-browser"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">349</span></div>
+                                    <div class="stat-heading">Số lượt truy cập</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-4">
+                                <i class="pe-7s-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count">${countUser}</span></div>
+                                    <div class="stat-heading">Số khách hàng</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Widgets -->
+        <!-- Animated -->
+        <div   style="${home != null ? "display: block" : "display: none"}" class="animated fadeIn">
+
             <!--  Traffic  -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="box-title">Traffic </h4>
+                            <h4 class="box-title">Biểu đồ </h4>
                         </div>
                         <div class="row">
                             <div class="col-lg-8">
@@ -351,28 +580,28 @@
                             <div class="col-lg-4">
                                 <div class="card-body">
                                     <div class="progress-box progress-1">
-                                        <h4 class="por-title">Visits</h4>
+                                        <h4 class="por-title">Số lượt truy cập</h4>
                                         <div class="por-txt">96,930 Users (40%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
-                                        <h4 class="por-title">Bounce Rate</h4>
+                                        <h4 class="por-title">Tỉ lệ thoát</h4>
                                         <div class="por-txt">3,220 Users (24%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
-                                        <h4 class="por-title">Unique Visitors</h4>
+                                        <h4 class="por-title">Số lượng khách truy cập</h4>
                                         <div class="por-txt">29,658 Users (60%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="progress-box progress-2">
-                                        <h4 class="por-title">Targeted  Visitors</h4>
+                                        <h4 class="por-title">Tỉ lệ truy cập theo mua sản phâm hoàn tất</h4>
                                         <div class="por-txt">99,658 Users (90%)</div>
                                         <div class="progress mb-2" style="height: 5px;">
                                             <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
@@ -414,7 +643,7 @@
                                             <td class="serial">1.</td>
                                             <td class="avatar">
                                                 <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
+                                                    <a href="#"><img class="rounded-circle" src="${pageContext.request.contextPath}/views/admin/images/avatar/1.jpg" alt=""></a>
                                                 </div>
                                             </td>
                                             <td> #5469 </td>
@@ -429,7 +658,7 @@
                                             <td class="serial">2.</td>
                                             <td class="avatar">
                                                 <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/2.jpg" alt=""></a>
+                                                    <a href="#"><img class="rounded-circle" src="${pageContext.request.contextPath}/views/admin/images/avatar/2.jpg" alt=""></a>
                                                 </div>
                                             </td>
                                             <td> #5468 </td>
@@ -444,7 +673,7 @@
                                             <td class="serial">3.</td>
                                             <td class="avatar">
                                                 <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
+                                                    <a href="#"><img class="rounded-circle" src="${pageContext.request.contextPath}/views/admin/images/avatar/3.jpg" alt=""></a>
                                                 </div>
                                             </td>
                                             <td> #5467 </td>
@@ -459,7 +688,7 @@
                                             <td class="serial">4.</td>
                                             <td class="avatar">
                                                 <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/4.jpg" alt=""></a>
+                                                    <a href="#"><img class="rounded-circle" src="${pageContext.request.contextPath}/views/admin/images/avatar/4.jpg" alt=""></a>
                                                 </div>
                                             </td>
                                             <td> #5466 </td>
@@ -474,7 +703,7 @@
                                             <td class="serial">5.</td>
                                             <td class="avatar pb-0">
                                                 <div class="round-img">
-                                                    <a href="#"><img class="rounded-circle" src="images/avatar/6.jpg" alt=""></a>
+                                                    <a href="#"><img class="rounded-circle" src="${pageContext.request.contextPath}/views/admin/images/avatar/6.jpg" alt=""></a>
                                                 </div>
                                             </td>
                                             <td> #5465 </td>
@@ -590,7 +819,7 @@
                                         <li>
                                             <div class="msg-received msg-container">
                                                 <div class="avatar">
-                                                    <img src="images/avatar/64-1.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/views/admin/images/avatar/64-1.jpg" alt="">
                                                     <div class="send-time">11.11 am</div>
                                                 </div>
                                                 <div class="msg-box">
@@ -608,7 +837,7 @@
                                         <li>
                                             <div class="msg-sent msg-container">
                                                 <div class="avatar">
-                                                    <img src="images/avatar/64-2.jpg" alt="">
+                                                    <img src="${pageContext.request.contextPath}/views/admin/images/avatar/64-2.jpg" alt="">
                                                     <div class="send-time">11.11 am</div>
                                                 </div>
                                                 <div class="msg-box">
@@ -729,6 +958,333 @@
             <!-- /#add-category -->
         </div>
         <!-- .animated -->
+
+        <div  style="${quanLySanPham != null ? "display: block" : "display: none"}" class="container">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Quản lý <b>Sản phẩm</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                            <a href="#deleteEmployeeModal#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+                        </th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+                        </td>
+                        <td>Thomas Hardy</td>
+                        <td>thomashardy@mail.com</td>
+                        <td>89 Chiaroscuro Rd, Portland, USA</td>
+                        <td>(171) 555-2222</td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox2" name="options[]" value="1">
+								<label for="checkbox2"></label>
+							</span>
+                        </td>
+                        <td>Dominique Perrier</td>
+                        <td>dominiqueperrier@mail.com</td>
+                        <td>Obere Str. 57, Berlin, Germany</td>
+                        <td>(313) 555-5735</td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox3" name="options[]" value="1">
+								<label for="checkbox3"></label>
+							</span>
+                        </td>
+                        <td>Maria Anders</td>
+                        <td>mariaanders@mail.com</td>
+                        <td>25, rue Lauriston, Paris, France</td>
+                        <td>(503) 555-9931</td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox4" name="options[]" value="1">
+								<label for="checkbox4"></label>
+							</span>
+                        </td>
+                        <td>Fran Wilson</td>
+                        <td>franwilson@mail.com</td>
+                        <td>C/ Araquil, 67, Madrid, Spain</td>
+                        <td>(204) 619-5731</td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox5" name="options[]" value="1">
+								<label for="checkbox5"></label>
+							</span>
+                        </td>
+                        <td>Martin Blank</td>
+                        <td>martinblank@mail.com</td>
+                        <td>Via Monte Bianco 34, Turin, Italy</td>
+                        <td>(480) 631-2097</td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="clearfix">
+                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div  style="${quanLyNguoiDung != null ? "display: block" : "display: none"}" class="container">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Quản lý <b>Người dùng</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+                        </th>
+                        <th>ID</th>
+                        <th>Họ tên</th>
+                        <th>Chi tiêu</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Mật khẩu</th>
+                        <th>Địa chỉ</th>
+                        <th>Vai trò</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                        ArrayList<User> listUser = (ArrayList<User>) request.getAttribute("listUser");
+                        if (listUser != null) {
+                            for (User user : listUser) {
+                    %>
+                          <tr>
+                        <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+                        </td>
+                        <td><%=user.getId()%></td>
+                        <td><%=user.getHo_va_ten()%></td>
+                        <td><%=user.getChi_tieu()%></td>
+                        <td><%=user.getSo_dien_thoai()%></td>
+                        <td><%=user.getEmail()%></td>
+                        <td><%=user.getMat_khau()%></td>
+                        <td><%=user.getDia_chi()%></td>
+                        <td><%=user.getVai_tro()%></td>
+                        <td>
+                            <input style="cursor: pointer" type="hidden" href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></input>
+                            <form id="deleteForm" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete" method="post">
+                                <input type="hidden" name="id" value="<%=user.getId()%>">
+                                <input type="submit" onclick="confirmDelete(event);" class="btn btn-danger" value="Delete">
+                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                            </form>
+
+                        </td>
+                    </tr>
+                    <%
+                         }
+                        }else {
+                    %>
+                    <tr >
+                        <td colspan="11">Không có dữ liệu</td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
+                <div class="clearfix">
+                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+       <div style="display: ${quanLyNguoiDung != null ? "block" : "none"}" >
+           <!-- Edit Modal HTML -->
+           <div id="addEmployeeModal" class="modal fade">
+               <div class="modal-dialog">
+                   <div class="modal-content">
+                       <form action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/add-user"  method="post">
+                           <div class="modal-header">
+                               <h4 class="modal-title">Thêm người dùng</h4>
+                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                           </div>
+                           <div class="modal-body">
+                               <div class="form-group">
+                                   <label>Họ đệm</label>
+                                   <input type="text" name="ho-dem" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Tên</label>
+                                   <input type="text" name="ten" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Ngày sinh</label>
+                                   <input type="date" name="ngay-sinh" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Số điện thoại</label>
+                                   <input type="number" name="so-dien-thoai" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Email</label>
+                                   <input type="email" name="email" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Mật khẩu</label>
+                                   <input type="text" name="mat-khau" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Địa chỉ</label>
+                                   <input type="text" name="dia-chi" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Vai Trò</label>
+                                   <input type="text" name="vai-tro" class="form-control" required>
+                               </div>
+                           </div>
+                           <div class="modal-footer">
+                               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                               <input type="submit" class="btn btn-success" value="Add">
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+           <!-- Edit Modal HTML -->
+           <div id="editEmployeeModal" class="modal fade">
+               <div class="modal-dialog">
+                   <div class="modal-content">
+                       <form>
+                           <div class="modal-header">
+                               <h4 class="modal-title">Edit Employee</h4>
+                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                           </div>
+                           <div class="modal-body">
+                               <div class="form-group">
+                                   <label>Name</label>
+                                   <input type="text" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Email</label>
+                                   <input type="email" class="form-control" required>
+                               </div>
+                               <div class="form-group">
+                                   <label>Address</label>
+                                   <textarea class="form-control" required></textarea>
+                               </div>
+                               <div class="form-group">
+                                   <label>Phone</label>
+                                   <input type="text" class="form-control" required>
+                               </div>
+                           </div>
+                           <div class="modal-footer">
+                               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                               <input type="submit" class="btn btn-info" value="Save">
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+           <!-- Delete Modal HTML -->
+           <div id="deleteEmployeeModal" class="modal fade">
+               <div class="modal-dialog">
+                   <div class="modal-content">
+                       <form method="post" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete">
+                           <div class="modal-header">
+                               <h4 class="modal-title">Delete Employee</h4>
+                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                           </div>
+                           <div class="modal-body">
+                               <p>Are you sure you want to delete these Records?</p>
+                               <p class="text-warning"><small>This action cannot be undone.</small></p>
+                           </div>
+                           <div class="modal-footer">
+                               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                               <input type="submit" class="btn btn-danger" value="Delete">
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
     </div>
     <!-- /.content -->
     <div class="clearfix"></div>
@@ -754,7 +1310,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/views/admin/assets/js/main.js"></script>
 
 <!--  Chart js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
@@ -768,11 +1324,11 @@
 <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-<script src="assets/js/init/weather-init.js"></script>
+<script src="${pageContext.request.contextPath}/views/admin/assets/js/init/weather-init.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-<script src="assets/js/init/fullcalendar-init.js"></script>
+<script src="${pageContext.request.contextPath}/views/admin/assets/js/init/fullcalendar-init.js"></script>
 
 <!--Local Stuff-->
 <script>
@@ -964,7 +1520,33 @@
             }
         });
         // Bar Chart #flotBarChart End
+    })
+    $(document).ready(function(){
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Select/Deselect checkboxes
+        var checkbox = $('table tbody input[type="checkbox"]');
+        $("#selectAll").click(function(){
+            if(this.checked){
+                checkbox.each(function(){
+                    this.checked = true;
+                });
+            } else{
+                checkbox.each(function(){
+                    this.checked = false;
+                });
+            }
+        });
+        checkbox.click(function(){
+            if(!this.checked){
+                $("#selectAll").prop("checked", false);
+            }
+        });
     });
+</script>
+<script src="${pageContext.request.contextPath}/views/admin/assets/js/handle/handleQuanLyNguoiDung.js">
+
 </script>
 </body>
 </html>

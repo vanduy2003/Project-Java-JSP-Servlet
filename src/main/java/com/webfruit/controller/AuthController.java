@@ -30,12 +30,19 @@ public class AuthController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        String email = req.getParameter("email") != null ? req.getParameter("email") : null;
+        String password = req.getParameter("password") != null ? req.getParameter("password") : null;
         if (email != null && password != null) {
             try {
-                String check = Auth.getInstance().checkLogin(email, password);
-                if (Integer.parseInt(check) >= 0){
+                String check = Auth.getInstance().checkLogin(email, password) == null ? "-1"  : Auth.getInstance().checkLogin(email, password);
+                int checkInt = -1;
+                try {
+                     checkInt = Integer.parseInt(check);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (checkInt != -1){
                     // login success
                     req.setAttribute("title", "Thành công");
                     req.setAttribute("message", "Đăng nhập thành công!");
@@ -54,7 +61,7 @@ public class AuthController extends HttpServlet {
                 } else {
                     // login failure
                     req.setAttribute("title", "Thất bại");
-                    req.setAttribute("message", "Đăng nhập thất bại. Vui lòng thử lại.");
+                    req.setAttribute("message", check);
                     req.setAttribute("messageType", "error");
                     req.setAttribute("icon", "close-circle");
                     req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
