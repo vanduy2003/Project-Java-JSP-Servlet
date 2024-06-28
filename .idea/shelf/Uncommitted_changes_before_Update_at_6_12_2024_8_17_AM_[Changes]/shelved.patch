@@ -1,0 +1,1022 @@
+Index: src/main/java/com/webfruit/controller/RegisterController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.webfruit.controller;\r\n\r\nimport jakarta.servlet.ServletException;\r\nimport jakarta.servlet.annotation.WebServlet;\r\nimport jakarta.servlet.http.HttpServlet;\r\nimport jakarta.servlet.http.HttpServletRequest;\r\nimport jakarta.servlet.http.HttpServletResponse;\r\nimport java.io.IOException;\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.SQLException;\r\nimport com.webfruit.model.DBUtil;\r\nimport com.webfruit.model.Auth;\r\n\r\n@WebServlet(name = \"dang-ky\", urlPatterns = {\"/dang-ky\"})\r\npublic class RegisterController extends HttpServlet {\r\n    public RegisterController() {\r\n        super();\r\n    }\r\n\r\n    @Override\r\n    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        req.getRequestDispatcher(\"/views/web/sign-up.jsp\").forward(req, resp);\r\n    }\r\n\r\n    @Override\r\n    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        String username = req.getParameter(\"username\");\r\n        String email = req.getParameter(\"email\");\r\n        String phone = req.getParameter(\"sdt\");\r\n        String password = req.getParameter(\"password\");\r\n        String confirmPassword = req.getParameter(\"confirm_password\");\r\n\r\n\r\n        if (username != null && email != null && phone != null && password != null && confirmPassword != null) {\r\n            if (password.equals(confirmPassword)) {\r\n                try {\r\n                    boolean success = Auth.getInstance().registerUser(username, email, phone, password);\r\n                    if (success) {\r\n                        resp.sendRedirect(\"dang-nhap\");\r\n                    } else {\r\n                        req.setAttribute(\"error\", \"Registration failed!\");\r\n                        req.getRequestDispatcher(\"/views/web/sign-up.jsp\").forward(req, resp);\r\n                    }\r\n                } catch (Exception e) {\r\n                    e.printStackTrace();\r\n                    req.setAttribute(\"error\", \"An error occurred during registration!\");\r\n                    req.getRequestDispatcher(\"/views/web/sign-up.jsp\").forward(req, resp);\r\n                }\r\n            } else {\r\n                req.setAttribute(\"error\", \"Please confirm your password again\");\r\n                req.getRequestDispatcher(\"/views/web/sign-up.jsp\").forward(req, resp);\r\n            }\r\n        } else {\r\n            req.setAttribute(\"error\", \"All fields are required!\");\r\n            req.getRequestDispatcher(\"/views/web/sign-up.jsp\").forward(req, resp);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        super.service(req, resp);\r\n    }\r\n\r\n    @Override\r\n    public void destroy() {\r\n        super.destroy();\r\n    }\r\n\r\n    @Override\r\n    public void init() throws ServletException {\r\n        super.init();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/webfruit/controller/RegisterController.java b/src/main/java/com/webfruit/controller/RegisterController.java
+--- a/src/main/java/com/webfruit/controller/RegisterController.java	(revision d48989d2ba0aaaa75eacae876574c6f8d8a601e5)
++++ b/src/main/java/com/webfruit/controller/RegisterController.java	(date 1718154846471)
+@@ -37,22 +37,43 @@
+                 try {
+                     boolean success = Auth.getInstance().registerUser(username, email, phone, password);
+                     if (success) {
+-                        resp.sendRedirect("dang-nhap");
++                        req.setAttribute("title", "Thành công");
++                        req.setAttribute("message", "Đăng ký thành công!");
++                        req.setAttribute("messageType", "success");
++                        req.setAttribute("icon", "checkmark-circle");
++                        req.setAttribute("redirect", true);
++                        req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
+                     } else {
+-                        req.setAttribute("error", "Registration failed!");
++                        req.setAttribute("title", "Thất bại");
++                        req.setAttribute("message", "Đăng ký thất bại!");
++                        req.setAttribute("messageType", "error");
++                        req.setAttribute("icon", "close-circle");
++                        req.setAttribute("redirect", false);
+                         req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
+                     }
+                 } catch (Exception e) {
+                     e.printStackTrace();
+-                    req.setAttribute("error", "An error occurred during registration!");
++                    req.setAttribute("title", "Lỗi");
++                    req.setAttribute("message", "Có lỗi xảy ra trong quá trình đăng ký!");
++                    req.setAttribute("messageType", "error");
++                    req.setAttribute("icon", "close-circle");
++                    req.setAttribute("redirect", false);
+                     req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
+                 }
+             } else {
+-                req.setAttribute("error", "Please confirm your password again");
++                req.setAttribute("title", "Lỗi");
++                req.setAttribute("message", "Vui lòng xác nhận lại mật khẩu");
++                req.setAttribute("messageType", "error");
++                req.setAttribute("icon", "close-circle");
++                req.setAttribute("redirect", false);
+                 req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
+             }
+         } else {
+-            req.setAttribute("error", "All fields are required!");
++            req.setAttribute("title", "Lỗi");
++            req.setAttribute("message", "Tất cả các trường đều bắt buộc!");
++            req.setAttribute("messageType", "error");
++            req.setAttribute("icon", "close-circle");
++            req.setAttribute("redirect", false);
+             req.getRequestDispatcher("/views/web/sign-up.jsp").forward(req, resp);
+         }
+     }
+Index: src/main/java/com/webfruit/controller/AuthController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.webfruit.controller;\r\n\r\nimport jakarta.servlet.ServletException;\r\nimport jakarta.servlet.annotation.WebServlet;\r\nimport jakarta.servlet.http.HttpServlet;\r\nimport jakarta.servlet.http.HttpServletRequest;\r\nimport jakarta.servlet.http.HttpServletResponse;\r\nimport java.io.IOException;\r\nimport com.webfruit.model.Auth;\r\nimport jakarta.servlet.http.HttpSession;\r\n\r\n\r\n@WebServlet(name = \"dang-nhap\", urlPatterns = {\"/dang-nhap\"})\r\npublic class AuthController extends HttpServlet {\r\n    public AuthController() {\r\n        super();\r\n    }\r\n\r\n    @Override\r\n    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        String action = req.getPathInfo();\r\n        req.getRequestDispatcher(\"/views/web/login.jsp\").forward(req, resp);\r\n    }\r\n\r\n    @Override\r\n    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        String email = req.getParameter(\"email\");\r\n        String password = req.getParameter(\"password\");\r\n        // check phone and password != null hay khong\r\n        if (email != null && password != null) {\r\n            try {\r\n                String check =  Auth.getInstance().checkLogin(email, password);\r\n                // check login neu co ID tra ve thi login success\r\n\r\n                if (!check.equals(\"Email hoặc mật khẩu không đúng\") && !check.equals(\"Vui lòng đăng nhập lại sau, đã xảy ra lỗi phía Server\") ) {\r\n                    // login success\r\n                    HttpSession session = req.getSession();\r\n                    session.setAttribute(\"IDUser\", check);\r\n                    resp.sendRedirect(\"/Project_JSP_Servlet_war_exploded/trang-chu\");\r\n                } else {\r\n                    // login fail\r\n                    req.setAttribute(\"error\", check);\r\n                    req.getRequestDispatcher(\"/views/web/login.jsp\").forward(req, resp);\r\n                }\r\n            }catch (Exception e) {\r\n                System.out.println(\"Đã xảy ra lỗi khi đăng nhập!\");\r\n                e.printStackTrace();\r\n            }\r\n        } else {\r\n            // phone or password is null\r\n            resp.sendRedirect(\"/dang-nhap\");\r\n        }\r\n    }\r\n\r\n    @Override\r\n    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {\r\n        super.service(req, resp);\r\n    }\r\n\r\n    @Override\r\n    public void destroy() {\r\n        super.destroy();\r\n    }\r\n\r\n    @Override\r\n    public void init() throws ServletException {\r\n        super.init();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/webfruit/controller/AuthController.java b/src/main/java/com/webfruit/controller/AuthController.java
+--- a/src/main/java/com/webfruit/controller/AuthController.java	(revision d48989d2ba0aaaa75eacae876574c6f8d8a601e5)
++++ b/src/main/java/com/webfruit/controller/AuthController.java	(date 1718155068115)
+@@ -1,5 +1,6 @@
+ package com.webfruit.controller;
+ 
++import jakarta.servlet.RequestDispatcher;
+ import jakarta.servlet.ServletException;
+ import jakarta.servlet.annotation.WebServlet;
+ import jakarta.servlet.http.HttpServlet;
+@@ -9,8 +10,7 @@
+ import com.webfruit.model.Auth;
+ import jakarta.servlet.http.HttpSession;
+ 
+-
+-@WebServlet(name = "dang-nhap", urlPatterns = {"/dang-nhap"})
++@WebServlet(name = "dang-nhap", urlPatterns = { "/dang-nhap" })
+ public class AuthController extends HttpServlet {
+     public AuthController() {
+         super();
+@@ -26,29 +26,43 @@
+     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+         String email = req.getParameter("email");
+         String password = req.getParameter("password");
+-        // check phone and password != null hay khong
++
+         if (email != null && password != null) {
+             try {
+-                String check =  Auth.getInstance().checkLogin(email, password);
+-                // check login neu co ID tra ve thi login success
+-
+-                if (!check.equals("Email hoặc mật khẩu không đúng") && !check.equals("Vui lòng đăng nhập lại sau, đã xảy ra lỗi phía Server") ) {
++                String check = Auth.getInstance().checkLogin(email, password);
++                if (Integer.parseInt(check) > 0){
+                     // login success
+-                    HttpSession session = req.getSession();
+-                    session.setAttribute("IDUser", check);
+-                    resp.sendRedirect("/Project_JSP_Servlet_war_exploded/trang-chu");
++                    req.setAttribute("title", "Thành công");
++                    req.setAttribute("message", "Đăng nhập thành công!");
++                    req.setAttribute("messageType", "success");
++                    req.setAttribute("icon", "checkmark-circle");
++                    req.setAttribute("redirect", true);
++                    req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+                 } else {
+-                    // login fail
+-                    req.setAttribute("error", check);
++                    // login failure
++                    req.setAttribute("title", "Thất bại");
++                    req.setAttribute("message", "Đăng nhập thất bại. Vui lòng thử lại.");
++                    req.setAttribute("messageType", "error");
++                    req.setAttribute("icon", "close-circle");
+                     req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+                 }
+-            }catch (Exception e) {
++
++            } catch (Exception e) {
+                 System.out.println("Đã xảy ra lỗi khi đăng nhập!");
+                 e.printStackTrace();
++                req.setAttribute("title", "Lỗi");
++                req.setAttribute("message", "Đã xảy ra lỗi. Vui lòng thử lại.");
++                req.setAttribute("messageType", "error");
++                req.setAttribute("icon", "alert-circle");
++                req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+             }
+         } else {
+-            // phone or password is null
+-            resp.sendRedirect("/dang-nhap");
++            // email hoặc password null
++            req.setAttribute("title", "Lỗi");
++            req.setAttribute("message", "Email và mật khẩu không được để trống.");
++            req.setAttribute("messageType", "error");
++            req.setAttribute("icon", "alert-circle");
++            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+         }
+     }
+ 
+@@ -66,4 +80,4 @@
+     public void init() throws ServletException {
+         super.init();
+     }
+-}
++}
+\ No newline at end of file
+Index: target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/login.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n<%--    <link rel=\"stylesheet\" href=\"css/login.css\">--%>\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/css/login.css\">\r\n\r\n    <title>Login</title>\r\n    <style>\r\n        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');\r\n        *{\r\n            margin: 0;\r\n            padding: 0;\r\n            font-family: 'poppins',sans-serif;\r\n        }\r\n        section{\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n            min-height: 100vh;\r\n            width: 100%;\r\n\r\n            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png')no-repeat;\r\n            background-position: center;\r\n            background-size: cover;\r\n        }\r\n        .form-box{\r\n            position: relative;\r\n            width: 400px;\r\n            height: 450px;\r\n            background: transparent;\r\n            border: 2px solid rgba(255,255,255,0.5);\r\n            border-radius: 20px;\r\n            backdrop-filter: blur(15px);\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n\r\n        }\r\n        h2{\r\n            font-size: 2em;\r\n            color: #fff;\r\n            text-align: center;\r\n        }\r\n        .inputbox{\r\n            position: relative;\r\n            margin: 30px 0;\r\n            width: 310px;\r\n            border-bottom: 2px solid #fff;\r\n        }\r\n        .inputbox label{\r\n            position: absolute;\r\n            top: 50%;\r\n            left: 5px;\r\n            transform: translateY(-50%);\r\n            color: #fff;\r\n            font-size: 1em;\r\n            pointer-events: none;\r\n            transition: .5s;\r\n        }\r\n        input:focus ~ label,\r\n        input:valid ~ label{\r\n            top: -5px;\r\n        }\r\n        .inputbox input {\r\n            width: 100%;\r\n            height: 50px;\r\n            background: transparent;\r\n            border: none;\r\n            outline: none;\r\n            font-size: 1em;\r\n            padding:0 35px 0 5px;\r\n            color: #fff;\r\n        }\r\n        .inputbox ion-icon{\r\n            position: absolute;\r\n            right: 8px;\r\n            color: #fff;\r\n            font-size: 1.2em;\r\n            top: 20px;\r\n        }\r\n        .forget{\r\n            margin: -15px 0 15px ;\r\n            font-size: .9em;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n        }\r\n\r\n        .forget label input{\r\n            margin-right: 3px;\r\n\r\n        }\r\n        .forget label a{\r\n            color: #fff;\r\n            text-decoration: none;\r\n        }\r\n        .forget label a:hover{\r\n            text-decoration: underline;\r\n        }\r\n        button{\r\n            width: 100%;\r\n            height: 40px;\r\n            border-radius: 40px;\r\n            background: #fff;\r\n            border: none;\r\n            outline: none;\r\n            cursor: pointer;\r\n            font-size: 1em;\r\n            font-weight: 600;\r\n        }\r\n        .register{\r\n            font-size: .9em;\r\n            color: #fff;\r\n            text-align: center;\r\n            margin: 25px 0 10px;\r\n        }\r\n        .register p a{\r\n            text-decoration: none;\r\n            color: #fff;\r\n            font-weight: 600;\r\n        }\r\n        .register p a:hover{\r\n            text-decoration: underline;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n<section>\r\n    <div class=\"form-box\">\r\n        <div class=\"form-value\">\r\n            <form action=\"\" method=\"post\">\r\n                <h2>Login</h2>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"mail-outline\"></ion-icon>\r\n                    <input type=\"email\" name=\"email\" required>\r\n                    <label>Email</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"lock-closed-outline\"></ion-icon>\r\n                    <input type=\"password\" name=\"password\" required>\r\n                    <label>Password</label>\r\n                </div>\r\n                <div class=\"forget justify-content-between\">\r\n                    <label><input type=\"checkbox\">Remember Me</label>\r\n                    <label><a href=\"quen-mat-khau\">Forget Password?</a></label>\r\n                </div>\r\n                <button type=\"submit\">Log in</button>\r\n                <div class=\"register\">\r\n                    <p>Don't have an account? <a href=\"dang-ky\">Register</a></p>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n<script type=\"module\" src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js\"></script>\r\n<script nomodule src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/login.jsp b/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/login.jsp
+--- a/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/login.jsp	(revision d48989d2ba0aaaa75eacae876574c6f8d8a601e5)
++++ b/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/login.jsp	(date 1718154846484)
+@@ -1,53 +1,49 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+-<%--    <link rel="stylesheet" href="css/login.css">--%>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+-
+     <title>Login</title>
+     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+-        *{
++        * {
+             margin: 0;
+             padding: 0;
+-            font-family: 'poppins',sans-serif;
++            font-family: 'Poppins', sans-serif;
+         }
+-        section{
++        section {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             min-height: 100vh;
+             width: 100%;
+-
+-            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png')no-repeat;
++            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png') no-repeat;
+             background-position: center;
+             background-size: cover;
+         }
+-        .form-box{
++        .form-box {
+             position: relative;
+             width: 400px;
+             height: 450px;
+             background: transparent;
+-            border: 2px solid rgba(255,255,255,0.5);
++            border: 2px solid rgba(255, 255, 255, 0.5);
+             border-radius: 20px;
+             backdrop-filter: blur(15px);
+             display: flex;
+             justify-content: center;
+             align-items: center;
+-
+         }
+-        h2{
++        h2 {
+             font-size: 2em;
+             color: #fff;
+             text-align: center;
+         }
+-        .inputbox{
++        .inputbox {
+             position: relative;
+             margin: 30px 0;
+             width: 310px;
+             border-bottom: 2px solid #fff;
+         }
+-        .inputbox label{
++        .inputbox label {
+             position: absolute;
+             top: 50%;
+             left: 5px;
+@@ -58,7 +54,7 @@
+             transition: .5s;
+         }
+         input:focus ~ label,
+-        input:valid ~ label{
++        input:valid ~ label {
+             top: -5px;
+         }
+         .inputbox input {
+@@ -68,36 +64,34 @@
+             border: none;
+             outline: none;
+             font-size: 1em;
+-            padding:0 35px 0 5px;
++            padding: 0 35px 0 5px;
+             color: #fff;
+         }
+-        .inputbox ion-icon{
++        .inputbox ion-icon {
+             position: absolute;
+             right: 8px;
+             color: #fff;
+             font-size: 1.2em;
+             top: 20px;
+         }
+-        .forget{
+-            margin: -15px 0 15px ;
++        .forget {
++            margin: -15px 0 15px;
+             font-size: .9em;
+             color: #fff;
+             display: flex;
+             justify-content: space-between;
+         }
+-
+-        .forget label input{
++        .forget label input {
+             margin-right: 3px;
+-
+         }
+-        .forget label a{
++        .forget label a {
+             color: #fff;
+             text-decoration: none;
+         }
+-        .forget label a:hover{
++        .forget label a:hover {
+             text-decoration: underline;
+         }
+-        button{
++        button {
+             width: 100%;
+             height: 40px;
+             border-radius: 40px;
+@@ -108,20 +102,87 @@
+             font-size: 1em;
+             font-weight: 600;
+         }
+-        .register{
++        .register {
+             font-size: .9em;
+             color: #fff;
+             text-align: center;
+             margin: 25px 0 10px;
+         }
+-        .register p a{
++        .register p a {
+             text-decoration: none;
+             color: #fff;
+             font-weight: 600;
+         }
+-        .register p a:hover{
++        .register p a:hover {
+             text-decoration: underline;
+         }
++        /* Toast styles */
++        #toast {
++            visibility: hidden;
++            max-width: 350px;
++            background-color: #fff;
++            color: #333;
++            text-align: left;
++            border-radius: 5px;
++            position: fixed;
++            z-index: 1;
++            bottom: 30px;
++            right: 30px;
++            font-size: 16px;
++            white-space: nowrap;
++            padding: 10px;
++            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
++            display: flex;
++            align-items: center;
++        }
++        #toast.show {
++            visibility: visible;
++            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
++            animation: fadein 0.5s, fadeout 0.5s 2.5s;
++        }
++        #toast ion-icon {
++            margin-right: 10px;
++            font-size: 24px;
++        }
++        #toast.success {
++            border-left: 4px solid green;
++        }
++        #toast.success ion-icon {
++            color: green;
++        }
++        #toast.success .toast-title {
++            color: green;
++        }
++        #toast.error {
++            border-left: 4px solid red;
++        }
++        #toast.error ion-icon {
++            color: red;
++        }
++        #toast.error .toast-title {
++            color: red;
++        }
++        #toast .toast-title {
++            font-weight: bold;
++            margin-right: 10px;
++        }
++        @-webkit-keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @-webkit-keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++        @keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++
+     </style>
+ </head>
+ <body>
+@@ -152,7 +213,57 @@
+         </div>
+     </div>
+ </section>
++
++<!-- Toast container -->
++<div id="toast">
++    <ion-icon name=""></ion-icon>
++    <div>
++        <div class="toast-title"></div>
++        <div class="toast-message"></div>
++    </div>
++</div>
++
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
++<script>
++    document.addEventListener('DOMContentLoaded', (event) => {
++        const toast = document.getElementById("toast");
++        const icon = toast.querySelector("ion-icon");
++        const title = toast.querySelector(".toast-title");
++        const message = toast.querySelector(".toast-message");
++
++        const toastMessage = '<%= request.getAttribute("message") %>';
++        const toastTitle = '<%= request.getAttribute("title") %>';
++        const toastIcon = '<%= request.getAttribute("icon") %>';
++        const messageType = '<%= request.getAttribute("messageType") %>';
++        const redirect = '<%= request.getAttribute("redirect") %>';
++
++        if (toastMessage && toastTitle && toastIcon) {
++            icon.setAttribute("name", toastIcon);
++            title.textContent = toastTitle;
++            message.textContent = toastMessage;
++
++            // Remove all previous messageType classes
++            toast.classList.remove("success", "error");
++
++            // Add the current messageType class
++            if (messageType) {
++                toast.classList.add(messageType);
++            }
++
++            toast.classList.add("show");
++
++            // Remove the show class after 3 seconds
++            setTimeout(function() {
++                toast.classList.remove("show");
++                if (redirect === "true") {
++                    window.location.href = "/Project_JSP_Servlet_war_exploded/";
++                }
++            }, 3000);
++        }
++    });
++
++
++</script>
+ </body>
+ </html>
+Index: src/main/webapp/views/web/sign-up.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <link rel=\"stylesheet\" href=\"css/login.css\">\r\n    <title>Register</title>\r\n    <style>\r\n        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');\r\n        *{\r\n            margin: 0;\r\n            padding: 0;\r\n            font-family: 'poppins',sans-serif;\r\n        }\r\n        section{\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n            min-height: 100vh;\r\n            width: 100%;\r\n            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png') no-repeat;\r\n            background-position: center;\r\n            background-size: cover;\r\n        }\r\n        .form-box-1{\r\n            position: relative;\r\n            width: 460px;\r\n            height: 620px;\r\n            background: transparent;\r\n            border: 2px solid rgba(255,255,255,0.5);\r\n            border-radius: 20px;\r\n            backdrop-filter: blur(15px);\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n        }\r\n        h2{\r\n            font-size: 2em;\r\n            color: #fff;\r\n            text-align: center;\r\n        }\r\n        .inputbox{\r\n            position: relative;\r\n            margin: 30px 0;\r\n            width: 390px;\r\n            border-bottom: 2px solid #fff;\r\n        }\r\n        .inputbox label{\r\n            position: absolute;\r\n            top: 50%;\r\n            left: 5px;\r\n            transform: translateY(-50%);\r\n            color: #fff;\r\n            font-size: 1em;\r\n            pointer-events: none;\r\n            transition: .5s;\r\n        }\r\n        input:focus ~ label,\r\n        input:valid ~ label{\r\n            top: -5px;\r\n        }\r\n        .inputbox input {\r\n            width: 100%;\r\n            height: 50px;\r\n            background: transparent;\r\n            border: none;\r\n            outline: none;\r\n            font-size: 1em;\r\n            padding: 0 35px 0 5px;\r\n            color: #fff;\r\n        }\r\n        .inputbox ion-icon{\r\n            position: absolute;\r\n            right: 8px;\r\n            color: #fff;\r\n            font-size: 1.2em;\r\n            top: 20px;\r\n        }\r\n        .forget{\r\n            margin: -15px 0 15px;\r\n            font-size: .9em;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n        }\r\n        .forget label input{\r\n            margin-right: 3px;\r\n        }\r\n        .forget label a{\r\n            color: #fff;\r\n            text-decoration: none;\r\n        }\r\n        .forget label a:hover{\r\n            text-decoration: underline;\r\n        }\r\n        button{\r\n            width: 100%;\r\n            height: 40px;\r\n            border-radius: 40px;\r\n            background: #fff;\r\n            border: none;\r\n            outline: none;\r\n            cursor: pointer;\r\n            font-size: 1em;\r\n            font-weight: 600;\r\n        }\r\n        .register{\r\n            font-size: .9em;\r\n            color: #fff;\r\n            text-align: center;\r\n            margin: 25px 0 10px;\r\n        }\r\n        .register p a{\r\n            text-decoration: none;\r\n            color: #fff;\r\n            font-weight: 600;\r\n        }\r\n        .register p a:hover{\r\n            text-decoration: underline;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n<section>\r\n    <div class=\"form-box-1\">\r\n        <div class=\"form-value\">\r\n            <form action=\"dang-ky\" method=\"post\">\r\n                <h2>Register</h2>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"person-outline\"></ion-icon>\r\n                    <input type=\"text\" name=\"username\" required>\r\n                    <label>Username</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"mail-outline\"></ion-icon>\r\n                    <input type=\"email\" name=\"email\" required>\r\n                    <label>Email</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"phone-portrait-outline\"></ion-icon>\r\n                    <input type=\"text\" name=\"sdt\" required>\r\n                    <label>Phone</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"lock-closed-outline\"></ion-icon>\r\n                    <input type=\"password\" name=\"password\" required>\r\n                    <label>Password</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"lock-closed-outline\"></ion-icon>\r\n                    <input type=\"password\" name=\"confirm_password\" required>\r\n                    <label>Confirm Password</label>\r\n                </div>\r\n                <button type=\"submit\">Register</button>\r\n                <div class=\"register\">\r\n                    <p>You already have an account? <a href=\"dang-nhap\">Login</a></p>\r\n                </div>\r\n                <div class=\"error\">\r\n                    <p style=\"color: red;\">\r\n                        <%= request.getAttribute(\"error\") != null ? request.getAttribute(\"error\") : \"\" %>\r\n                    </p>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n<script type=\"module\" src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js\"></script>\r\n<script nomodule src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/views/web/sign-up.jsp b/src/main/webapp/views/web/sign-up.jsp
+--- a/src/main/webapp/views/web/sign-up.jsp	(revision d48989d2ba0aaaa75eacae876574c6f8d8a601e5)
++++ b/src/main/webapp/views/web/sign-up.jsp	(date 1718154846474)
+@@ -116,6 +116,73 @@
+         .register p a:hover{
+             text-decoration: underline;
+         }
++        /* Toast styles */
++        #toast {
++            visibility: hidden;
++            max-width: 350px;
++            background-color: #fff;
++            color: #333;
++            text-align: left;
++            border-radius: 5px;
++            position: fixed;
++            z-index: 1;
++            bottom: 30px;
++            right: 30px;
++            font-size: 16px;
++            white-space: nowrap;
++            padding: 10px;
++            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
++            display: flex;
++            align-items: center;
++        }
++        #toast.show {
++            visibility: visible;
++            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
++            animation: fadein 0.5s, fadeout 0.5s 2.5s;
++        }
++        #toast ion-icon {
++            margin-right: 10px;
++            font-size: 24px;
++        }
++        #toast.success {
++            border-left: 4px solid green;
++        }
++        #toast.success ion-icon {
++            color: green;
++        }
++        #toast.success .toast-title {
++            color: green;
++        }
++        #toast.error {
++            border-left: 4px solid red;
++        }
++        #toast.error ion-icon {
++            color: red;
++        }
++        #toast.error .toast-title {
++            color: red;
++        }
++        #toast .toast-title {
++            font-weight: bold;
++            margin-right: 10px;
++        }
++        @-webkit-keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @-webkit-keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++        @keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++
+     </style>
+ </head>
+ <body>
+@@ -152,17 +219,61 @@
+                 <button type="submit">Register</button>
+                 <div class="register">
+                     <p>You already have an account? <a href="dang-nhap">Login</a></p>
+-                </div>
+-                <div class="error">
+-                    <p style="color: red;">
+-                        <%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+-                    </p>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </section>
++
++<!-- Toast container -->
++<div id="toast">
++    <ion-icon name=""></ion-icon>
++    <div>
++        <div class="toast-title"></div>
++        <div class="toast-message"></div>
++    </div>
++</div>
++
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
++<script>
++    document.addEventListener('DOMContentLoaded', (event) => {
++        const toast = document.getElementById("toast");
++        const icon = toast.querySelector("ion-icon");
++        const title = toast.querySelector(".toast-title");
++        const message = toast.querySelector(".toast-message");
++
++        const toastMessage = '<%= request.getAttribute("message") %>';
++        const toastTitle = '<%= request.getAttribute("title") %>';
++        const toastIcon = '<%= request.getAttribute("icon") %>';
++        const messageType = '<%= request.getAttribute("messageType") %>';
++        const redirect = '<%= request.getAttribute("redirect") %>';
++
++        if (toastMessage && toastTitle && toastIcon) {
++            icon.setAttribute("name", toastIcon);
++            title.textContent = toastTitle;
++            message.textContent = toastMessage;
++
++            // Remove all previous messageType classes
++            toast.classList.remove("success", "error");
++
++            // Add the current messageType class
++            if (messageType) {
++                toast.classList.add(messageType);
++            }
++
++            toast.classList.add("show");
++
++            // Remove the show class after 3 seconds
++            setTimeout(function() {
++                toast.classList.remove("show");
++                if (redirect === "true") {
++                    window.location.href = "/Project_JSP_Servlet_war_exploded/";
++                }
++            }, 3000);
++        }
++    });
++
++</script>
+ </body>
+ </html>
+Index: target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Manifest-Version: 1.0\r\nCreated-By: IntelliJ IDEA\r\nBuilt-By: My-PC\r\nBuild-Jdk: 22.0.1\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF b/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF
+--- a/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF	(revision d48989d2ba0aaaa75eacae876574c6f8d8a601e5)
++++ b/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF	(date 1718154846475)
+@@ -1,5 +1,5 @@
+ Manifest-Version: 1.0
+ Created-By: IntelliJ IDEA
+-Built-By: My-PC
+-Build-Jdk: 22.0.1
++Built-By: duy95
++Build-Jdk: Oracle OpenJDK 22
+ 
+Index: target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/sign-up.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <link rel=\"stylesheet\" href=\"css/login.css\">\r\n    <title>Register</title>\r\n    <style>\r\n        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');\r\n        *{\r\n            margin: 0;\r\n            padding: 0;\r\n            font-family: 'poppins',sans-serif;\r\n        }\r\n        section{\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n            min-height: 100vh;\r\n            width: 100%;\r\n            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png') no-repeat;\r\n            background-position: center;\r\n            background-size: cover;\r\n        }\r\n        .form-box-1{\r\n            position: relative;\r\n            width: 460px;\r\n            height: 620px;\r\n            background: transparent;\r\n            border: 2px solid rgba(255,255,255,0.5);\r\n            border-radius: 20px;\r\n            backdrop-filter: blur(15px);\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n        }\r\n        h2{\r\n            font-size: 2em;\r\n            color: #fff;\r\n            text-align: center;\r\n        }\r\n        .inputbox{\r\n            position: relative;\r\n            margin: 30px 0;\r\n            width: 390px;\r\n            border-bottom: 2px solid #fff;\r\n        }\r\n        .inputbox label{\r\n            position: absolute;\r\n            top: 50%;\r\n            left: 5px;\r\n            transform: translateY(-50%);\r\n            color: #fff;\r\n            font-size: 1em;\r\n            pointer-events: none;\r\n            transition: .5s;\r\n        }\r\n        input:focus ~ label,\r\n        input:valid ~ label{\r\n            top: -5px;\r\n        }\r\n        .inputbox input {\r\n            width: 100%;\r\n            height: 50px;\r\n            background: transparent;\r\n            border: none;\r\n            outline: none;\r\n            font-size: 1em;\r\n            padding: 0 35px 0 5px;\r\n            color: #fff;\r\n        }\r\n        .inputbox ion-icon{\r\n            position: absolute;\r\n            right: 8px;\r\n            color: #fff;\r\n            font-size: 1.2em;\r\n            top: 20px;\r\n        }\r\n        .forget{\r\n            margin: -15px 0 15px;\r\n            font-size: .9em;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n        }\r\n        .forget label input{\r\n            margin-right: 3px;\r\n        }\r\n        .forget label a{\r\n            color: #fff;\r\n            text-decoration: none;\r\n        }\r\n        .forget label a:hover{\r\n            text-decoration: underline;\r\n        }\r\n        button{\r\n            width: 100%;\r\n            height: 40px;\r\n            border-radius: 40px;\r\n            background: #fff;\r\n            border: none;\r\n            outline: none;\r\n            cursor: pointer;\r\n            font-size: 1em;\r\n            font-weight: 600;\r\n        }\r\n        .register{\r\n            font-size: .9em;\r\n            color: #fff;\r\n            text-align: center;\r\n            margin: 25px 0 10px;\r\n        }\r\n        .register p a{\r\n            text-decoration: none;\r\n            color: #fff;\r\n            font-weight: 600;\r\n        }\r\n        .register p a:hover{\r\n            text-decoration: underline;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n<section>\r\n    <div class=\"form-box-1\">\r\n        <div class=\"form-value\">\r\n            <form action=\"dang-ky\" method=\"post\">\r\n                <h2>Register</h2>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"person-outline\"></ion-icon>\r\n                    <input type=\"text\" name=\"username\" required>\r\n                    <label>Username</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"mail-outline\"></ion-icon>\r\n                    <input type=\"email\" name=\"email\" required>\r\n                    <label>Email</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"phone-portrait-outline\"></ion-icon>\r\n                    <input type=\"text\" name=\"sdt\" required>\r\n                    <label>Phone</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"lock-closed-outline\"></ion-icon>\r\n                    <input type=\"password\" name=\"password\" required>\r\n                    <label>Password</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"lock-closed-outline\"></ion-icon>\r\n                    <input type=\"password\" name=\"confirm_password\" required>\r\n                    <label>Confirm Password</label>\r\n                </div>\r\n                <button type=\"submit\">Register</button>\r\n                <div class=\"register\">\r\n                    <p>You already have an account? <a href=\"dang-nhap\">Login</a></p>\r\n                </div>\r\n                <div class=\"error\">\r\n                    <p style=\"color: red;\">\r\n                        <%= request.getAttribute(\"error\") != null ? request.getAttribute(\"error\") : \"\" %>\r\n                    </p>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n<script type=\"module\" src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js\"></script>\r\n<script nomodule src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/sign-up.jsp b/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/sign-up.jsp
+--- a/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/sign-up.jsp	(revision d48989d2ba0aaaa75eacae876574c6f8d8a601e5)
++++ b/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/sign-up.jsp	(date 1718154846485)
+@@ -116,6 +116,73 @@
+         .register p a:hover{
+             text-decoration: underline;
+         }
++        /* Toast styles */
++        #toast {
++            visibility: hidden;
++            max-width: 350px;
++            background-color: #fff;
++            color: #333;
++            text-align: left;
++            border-radius: 5px;
++            position: fixed;
++            z-index: 1;
++            bottom: 30px;
++            right: 30px;
++            font-size: 16px;
++            white-space: nowrap;
++            padding: 10px;
++            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
++            display: flex;
++            align-items: center;
++        }
++        #toast.show {
++            visibility: visible;
++            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
++            animation: fadein 0.5s, fadeout 0.5s 2.5s;
++        }
++        #toast ion-icon {
++            margin-right: 10px;
++            font-size: 24px;
++        }
++        #toast.success {
++            border-left: 4px solid green;
++        }
++        #toast.success ion-icon {
++            color: green;
++        }
++        #toast.success .toast-title {
++            color: green;
++        }
++        #toast.error {
++            border-left: 4px solid red;
++        }
++        #toast.error ion-icon {
++            color: red;
++        }
++        #toast.error .toast-title {
++            color: red;
++        }
++        #toast .toast-title {
++            font-weight: bold;
++            margin-right: 10px;
++        }
++        @-webkit-keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @-webkit-keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++        @keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++
+     </style>
+ </head>
+ <body>
+@@ -152,17 +219,61 @@
+                 <button type="submit">Register</button>
+                 <div class="register">
+                     <p>You already have an account? <a href="dang-nhap">Login</a></p>
+-                </div>
+-                <div class="error">
+-                    <p style="color: red;">
+-                        <%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+-                    </p>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </section>
++
++<!-- Toast container -->
++<div id="toast">
++    <ion-icon name=""></ion-icon>
++    <div>
++        <div class="toast-title"></div>
++        <div class="toast-message"></div>
++    </div>
++</div>
++
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
++<script>
++    document.addEventListener('DOMContentLoaded', (event) => {
++        const toast = document.getElementById("toast");
++        const icon = toast.querySelector("ion-icon");
++        const title = toast.querySelector(".toast-title");
++        const message = toast.querySelector(".toast-message");
++
++        const toastMessage = '<%= request.getAttribute("message") %>';
++        const toastTitle = '<%= request.getAttribute("title") %>';
++        const toastIcon = '<%= request.getAttribute("icon") %>';
++        const messageType = '<%= request.getAttribute("messageType") %>';
++        const redirect = '<%= request.getAttribute("redirect") %>';
++
++        if (toastMessage && toastTitle && toastIcon) {
++            icon.setAttribute("name", toastIcon);
++            title.textContent = toastTitle;
++            message.textContent = toastMessage;
++
++            // Remove all previous messageType classes
++            toast.classList.remove("success", "error");
++
++            // Add the current messageType class
++            if (messageType) {
++                toast.classList.add(messageType);
++            }
++
++            toast.classList.add("show");
++
++            // Remove the show class after 3 seconds
++            setTimeout(function() {
++                toast.classList.remove("show");
++                if (redirect === "true") {
++                    window.location.href = "/Project_JSP_Servlet_war_exploded/";
++                }
++            }, 3000);
++        }
++    });
++
++</script>
+ </body>
+ </html>
+Index: src/main/webapp/views/web/login.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n<%--    <link rel=\"stylesheet\" href=\"css/login.css\">--%>\r\n    <link rel=\"stylesheet\" href=\"${pageContext.request.contextPath}/css/login.css\">\r\n\r\n    <title>Login</title>\r\n    <style>\r\n        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');\r\n        *{\r\n            margin: 0;\r\n            padding: 0;\r\n            font-family: 'poppins',sans-serif;\r\n        }\r\n        section{\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n            min-height: 100vh;\r\n            width: 100%;\r\n\r\n            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png')no-repeat;\r\n            background-position: center;\r\n            background-size: cover;\r\n        }\r\n        .form-box{\r\n            position: relative;\r\n            width: 400px;\r\n            height: 450px;\r\n            background: transparent;\r\n            border: 2px solid rgba(255,255,255,0.5);\r\n            border-radius: 20px;\r\n            backdrop-filter: blur(15px);\r\n            display: flex;\r\n            justify-content: center;\r\n            align-items: center;\r\n\r\n        }\r\n        h2{\r\n            font-size: 2em;\r\n            color: #fff;\r\n            text-align: center;\r\n        }\r\n        .inputbox{\r\n            position: relative;\r\n            margin: 30px 0;\r\n            width: 310px;\r\n            border-bottom: 2px solid #fff;\r\n        }\r\n        .inputbox label{\r\n            position: absolute;\r\n            top: 50%;\r\n            left: 5px;\r\n            transform: translateY(-50%);\r\n            color: #fff;\r\n            font-size: 1em;\r\n            pointer-events: none;\r\n            transition: .5s;\r\n        }\r\n        input:focus ~ label,\r\n        input:valid ~ label{\r\n            top: -5px;\r\n        }\r\n        .inputbox input {\r\n            width: 100%;\r\n            height: 50px;\r\n            background: transparent;\r\n            border: none;\r\n            outline: none;\r\n            font-size: 1em;\r\n            padding:0 35px 0 5px;\r\n            color: #fff;\r\n        }\r\n        .inputbox ion-icon{\r\n            position: absolute;\r\n            right: 8px;\r\n            color: #fff;\r\n            font-size: 1.2em;\r\n            top: 20px;\r\n        }\r\n        .forget{\r\n            margin: -15px 0 15px ;\r\n            font-size: .9em;\r\n            color: #fff;\r\n            display: flex;\r\n            justify-content: space-between;\r\n        }\r\n\r\n        .forget label input{\r\n            margin-right: 3px;\r\n\r\n        }\r\n        .forget label a{\r\n            color: #fff;\r\n            text-decoration: none;\r\n        }\r\n        .forget label a:hover{\r\n            text-decoration: underline;\r\n        }\r\n        button{\r\n            width: 100%;\r\n            height: 40px;\r\n            border-radius: 40px;\r\n            background: #fff;\r\n            border: none;\r\n            outline: none;\r\n            cursor: pointer;\r\n            font-size: 1em;\r\n            font-weight: 600;\r\n        }\r\n        .register{\r\n            font-size: .9em;\r\n            color: #fff;\r\n            text-align: center;\r\n            margin: 25px 0 10px;\r\n        }\r\n        .register p a{\r\n            text-decoration: none;\r\n            color: #fff;\r\n            font-weight: 600;\r\n        }\r\n        .register p a:hover{\r\n            text-decoration: underline;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n<section>\r\n    <div class=\"form-box\">\r\n        <div class=\"form-value\">\r\n            <form action=\"\" method=\"post\">\r\n                <h2>Login</h2>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"mail-outline\"></ion-icon>\r\n                    <input type=\"email\" name=\"email\" required>\r\n                    <label>Email</label>\r\n                </div>\r\n                <div class=\"inputbox\">\r\n                    <ion-icon name=\"lock-closed-outline\"></ion-icon>\r\n                    <input type=\"password\" name=\"password\" required>\r\n                    <label>Password</label>\r\n                </div>\r\n                <div class=\"forget justify-content-between\">\r\n                    <label><input type=\"checkbox\">Remember Me</label>\r\n                    <label><a href=\"quen-mat-khau\">Forget Password?</a></label>\r\n                </div>\r\n                <button type=\"submit\">Log in</button>\r\n                <div class=\"register\">\r\n                    <p>Don't have an account? <a href=\"dang-ky\">Register</a></p>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</section>\r\n<script type=\"module\" src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js\"></script>\r\n<script nomodule src=\"https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js\"></script>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/views/web/login.jsp b/src/main/webapp/views/web/login.jsp
+--- a/src/main/webapp/views/web/login.jsp	(revision d48989d2ba0aaaa75eacae876574c6f8d8a601e5)
++++ b/src/main/webapp/views/web/login.jsp	(date 1718154846473)
+@@ -1,53 +1,49 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+-<%--    <link rel="stylesheet" href="css/login.css">--%>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+-
+     <title>Login</title>
+     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+-        *{
++        * {
+             margin: 0;
+             padding: 0;
+-            font-family: 'poppins',sans-serif;
++            font-family: 'Poppins', sans-serif;
+         }
+-        section{
++        section {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             min-height: 100vh;
+             width: 100%;
+-
+-            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png')no-repeat;
++            background: url('https://cdn.pixabay.com/photo/2021/06/29/17/47/cherries-6374733_1280.png') no-repeat;
+             background-position: center;
+             background-size: cover;
+         }
+-        .form-box{
++        .form-box {
+             position: relative;
+             width: 400px;
+             height: 450px;
+             background: transparent;
+-            border: 2px solid rgba(255,255,255,0.5);
++            border: 2px solid rgba(255, 255, 255, 0.5);
+             border-radius: 20px;
+             backdrop-filter: blur(15px);
+             display: flex;
+             justify-content: center;
+             align-items: center;
+-
+         }
+-        h2{
++        h2 {
+             font-size: 2em;
+             color: #fff;
+             text-align: center;
+         }
+-        .inputbox{
++        .inputbox {
+             position: relative;
+             margin: 30px 0;
+             width: 310px;
+             border-bottom: 2px solid #fff;
+         }
+-        .inputbox label{
++        .inputbox label {
+             position: absolute;
+             top: 50%;
+             left: 5px;
+@@ -58,7 +54,7 @@
+             transition: .5s;
+         }
+         input:focus ~ label,
+-        input:valid ~ label{
++        input:valid ~ label {
+             top: -5px;
+         }
+         .inputbox input {
+@@ -68,36 +64,34 @@
+             border: none;
+             outline: none;
+             font-size: 1em;
+-            padding:0 35px 0 5px;
++            padding: 0 35px 0 5px;
+             color: #fff;
+         }
+-        .inputbox ion-icon{
++        .inputbox ion-icon {
+             position: absolute;
+             right: 8px;
+             color: #fff;
+             font-size: 1.2em;
+             top: 20px;
+         }
+-        .forget{
+-            margin: -15px 0 15px ;
++        .forget {
++            margin: -15px 0 15px;
+             font-size: .9em;
+             color: #fff;
+             display: flex;
+             justify-content: space-between;
+         }
+-
+-        .forget label input{
++        .forget label input {
+             margin-right: 3px;
+-
+         }
+-        .forget label a{
++        .forget label a {
+             color: #fff;
+             text-decoration: none;
+         }
+-        .forget label a:hover{
++        .forget label a:hover {
+             text-decoration: underline;
+         }
+-        button{
++        button {
+             width: 100%;
+             height: 40px;
+             border-radius: 40px;
+@@ -108,20 +102,87 @@
+             font-size: 1em;
+             font-weight: 600;
+         }
+-        .register{
++        .register {
+             font-size: .9em;
+             color: #fff;
+             text-align: center;
+             margin: 25px 0 10px;
+         }
+-        .register p a{
++        .register p a {
+             text-decoration: none;
+             color: #fff;
+             font-weight: 600;
+         }
+-        .register p a:hover{
++        .register p a:hover {
+             text-decoration: underline;
+         }
++        /* Toast styles */
++        #toast {
++            visibility: hidden;
++            max-width: 350px;
++            background-color: #fff;
++            color: #333;
++            text-align: left;
++            border-radius: 5px;
++            position: fixed;
++            z-index: 1;
++            bottom: 30px;
++            right: 30px;
++            font-size: 16px;
++            white-space: nowrap;
++            padding: 10px;
++            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
++            display: flex;
++            align-items: center;
++        }
++        #toast.show {
++            visibility: visible;
++            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
++            animation: fadein 0.5s, fadeout 0.5s 2.5s;
++        }
++        #toast ion-icon {
++            margin-right: 10px;
++            font-size: 24px;
++        }
++        #toast.success {
++            border-left: 4px solid green;
++        }
++        #toast.success ion-icon {
++            color: green;
++        }
++        #toast.success .toast-title {
++            color: green;
++        }
++        #toast.error {
++            border-left: 4px solid red;
++        }
++        #toast.error ion-icon {
++            color: red;
++        }
++        #toast.error .toast-title {
++            color: red;
++        }
++        #toast .toast-title {
++            font-weight: bold;
++            margin-right: 10px;
++        }
++        @-webkit-keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @keyframes fadein {
++            from {bottom: 0; opacity: 0;}
++            to {bottom: 30px; opacity: 1;}
++        }
++        @-webkit-keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++        @keyframes fadeout {
++            from {bottom: 30px; opacity: 1;}
++            to {bottom: 0; opacity: 0;}
++        }
++
+     </style>
+ </head>
+ <body>
+@@ -152,7 +213,57 @@
+         </div>
+     </div>
+ </section>
++
++<!-- Toast container -->
++<div id="toast">
++    <ion-icon name=""></ion-icon>
++    <div>
++        <div class="toast-title"></div>
++        <div class="toast-message"></div>
++    </div>
++</div>
++
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
++<script>
++    document.addEventListener('DOMContentLoaded', (event) => {
++        const toast = document.getElementById("toast");
++        const icon = toast.querySelector("ion-icon");
++        const title = toast.querySelector(".toast-title");
++        const message = toast.querySelector(".toast-message");
++
++        const toastMessage = '<%= request.getAttribute("message") %>';
++        const toastTitle = '<%= request.getAttribute("title") %>';
++        const toastIcon = '<%= request.getAttribute("icon") %>';
++        const messageType = '<%= request.getAttribute("messageType") %>';
++        const redirect = '<%= request.getAttribute("redirect") %>';
++
++        if (toastMessage && toastTitle && toastIcon) {
++            icon.setAttribute("name", toastIcon);
++            title.textContent = toastTitle;
++            message.textContent = toastMessage;
++
++            // Remove all previous messageType classes
++            toast.classList.remove("success", "error");
++
++            // Add the current messageType class
++            if (messageType) {
++                toast.classList.add(messageType);
++            }
++
++            toast.classList.add("show");
++
++            // Remove the show class after 3 seconds
++            setTimeout(function() {
++                toast.classList.remove("show");
++                if (redirect === "true") {
++                    window.location.href = "/Project_JSP_Servlet_war_exploded/";
++                }
++            }, 3000);
++        }
++    });
++
++
++</script>
+ </body>
+ </html>

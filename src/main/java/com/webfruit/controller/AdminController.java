@@ -16,10 +16,8 @@ import com.webfruit.dao.User;
 import com.webfruit.model.UserModel;
 import com.webfruit.model.Auth;
 
-
-
-
-@WebServlet(name = "admin", urlPatterns = {"/admin", "/admin/quan-ly-san-pham", "/admin/quan-ly-nguoi-dung", "/admin/quan-ly-nguoi-dung/add-user", "/admin/quan-ly-nguoi-dung/delete"})
+@WebServlet(name = "admin", urlPatterns = { "/admin", "/admin/quan-ly-san-pham", "/admin/quan-ly-nguoi-dung",
+        "/admin/quan-ly-nguoi-dung/add-user", "/admin/quan-ly-nguoi-dung/delete" })
 public class AdminController extends HttpServlet {
     public AdminController() {
         super();
@@ -44,7 +42,10 @@ public class AdminController extends HttpServlet {
             String dia_chi = req.getParameter("dia-chi");
             String vai_tro = req.getParameter("vai-tro");
             // validate
-            if (ho_dem == null || ho_dem.isEmpty() || ten == null || ten.isEmpty() ||  ngay_sinh == null || ngay_sinh.isEmpty() || so_dien_thoai == null || so_dien_thoai.isEmpty() || email == null || email.isEmpty() || mat_khau == null || mat_khau.isEmpty() || dia_chi == null || dia_chi.isEmpty() || vai_tro == null || vai_tro.isEmpty()) {
+            if (ho_dem == null || ho_dem.isEmpty() || ten == null || ten.isEmpty() || ngay_sinh == null
+                    || ngay_sinh.isEmpty() || so_dien_thoai == null || so_dien_thoai.isEmpty() || email == null
+                    || email.isEmpty() || mat_khau == null || mat_khau.isEmpty() || dia_chi == null || dia_chi.isEmpty()
+                    || vai_tro == null || vai_tro.isEmpty()) {
                 req.setAttribute("error", "Vui lòng nhập đầy đủ thông tin");
                 req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
                 return;
@@ -70,14 +71,13 @@ public class AdminController extends HttpServlet {
 
             }
 
-
-        }else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/delete")) {
+        } else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/delete")) {
             try {
                 String id = req.getParameter("id");
                 UserModel.getInstance().delete(Integer.parseInt(id));
                 UserModel.getInstance().closeConnection();
                 resp.sendRedirect(req.getContextPath() + "/admin/quan-ly-nguoi-dung");
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
@@ -90,18 +90,17 @@ public class AdminController extends HttpServlet {
         if (IDUser == null) {
             resp.sendRedirect(req.getContextPath() + "/dang-nhap");
             return;
-        }else {
-           try {
-               String id = Auth.getInstance().getUserByID(IDUser).getVai_tro();
-               if (!id.equalsIgnoreCase("admin")) {
-                   resp.sendRedirect(req.getContextPath() + "/trang-chu");
-                   return;
-               }
-           }catch (Exception ex) {
+        } else {
+            try {
+                String id = Auth.getInstance().getUserByID(IDUser).getVai_tro();
+                if (!id.equalsIgnoreCase("admin")) {
+                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
+                    return;
+                }
+            } catch (Exception ex) {
                 ex.printStackTrace();
-           }
+            }
         }
-
 
         try {
             int countUser = UserModel.getInstance().CountUser();
@@ -120,12 +119,12 @@ public class AdminController extends HttpServlet {
             req.setAttribute("quanLySanPham", "quanLySanPham");
             req.removeAttribute("home");
         } else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung")
-                || url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/add-user")){
+                || url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/add-user")) {
             try {
                 ArrayList<User> listUser = UserModel.getInstance().selectAll();
-               UserModel.getInstance().closeConnection();
+                UserModel.getInstance().closeConnection();
                 req.setAttribute("listUser", listUser);
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
             req.setAttribute("quanLyNguoiDung", "quanLyNguoiDung");

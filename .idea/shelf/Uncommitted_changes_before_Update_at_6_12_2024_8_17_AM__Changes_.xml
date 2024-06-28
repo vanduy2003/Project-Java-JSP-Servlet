@@ -1,0 +1,129 @@
+<changelist name="Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]" date="1718155071685" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 6/12/2024 8:17 AM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/controller/RegisterController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/controller/RegisterController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/RegisterController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AuthController.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AuthController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/AuthController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/RegisterController.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/RegisterController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/RegisterController1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Product.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Product.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/Product.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/dao/Order.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/dao/Order.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/Order.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/controller/UserController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/controller/UserController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/UserController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Order.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Order.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/Order1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/dao/Cart.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/dao/Cart.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/Cart.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/model/DBUtil.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/model/DBUtil.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/DBUtil.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/controller/ForgotPassController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/controller/ForgotPassController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/ForgotPassController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/controller/ForgotPasswordController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/controller/ForgotPasswordController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/ForgotPasswordController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/dao/ImageDetailProduct.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/dao/ImageDetailProduct.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/ImageDetailProduct.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/ImageDetailProduct.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/ImageDetailProduct.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/ImageDetailProduct1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/controller/AuthController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/controller/AuthController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/AuthController1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Cart.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Cart.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/Cart1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/dao/ProductType.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/dao/ProductType.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/ProductType.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/dao/Product.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/dao/Product.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/Product1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/model/UserModel.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/model/UserModel.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/UserModel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/UserState.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/UserState.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/UserState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/ProductType.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/ProductType.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/ProductType1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/dao/OrderProduct.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/dao/OrderProduct.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/OrderProduct.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/controller/ForgotPasswordController$1.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/controller/ForgotPasswordController$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/ForgotPasswordController$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/OrderProduct.class" />
+    <option name="AFTER_PATH" value="target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/OrderProduct.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/OrderProduct1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/model/CommonDao.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/model/CommonDao.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/CommonDao.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/webfruit/dao/UserState.class" />
+    <option name="AFTER_PATH" value="target/classes/com/webfruit/dao/UserState.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_12_2024_8_17_AM_[Changes]/UserState1.class" />
+  </binary>
+</changelist>
