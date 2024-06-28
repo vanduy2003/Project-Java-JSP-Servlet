@@ -968,7 +968,7 @@
                         </div>
                         <div class="col-sm-6">
                             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                            <a href="#deleteEmployeeModal#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+
                         </div>
                     </div>
                 </div>
@@ -1094,7 +1094,7 @@
                         </div>
                         <div class="col-sm-6">
                             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+
                         </div>
                     </div>
                 </div>
@@ -1115,7 +1115,7 @@
                         <th>Mật khẩu</th>
                         <th>Địa chỉ</th>
                         <th>Vai trò</th>
-                        <th>Actions</th>
+                        <th colspan="2" class="text-center">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -1139,15 +1139,32 @@
                         <td><%=user.getMat_khau()%></td>
                         <td><%=user.getDia_chi()%></td>
                         <td><%=user.getVai_tro()%></td>
-                        <td>
-                            <input style="cursor: pointer" type="hidden" href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></input>
-                            <form id="deleteForm" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete" method="post">
-                                <input type="hidden" name="id" value="<%=user.getId()%>">
-                                <input type="submit" onclick="confirmDelete(event);" class="btn btn-danger" value="Delete">
-                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                            </form>
+                              <td class="d-flex" style="gap: 5px" >
 
-                        </td>
+                                  <!-- Liên kết Update -->
+                                  <a style="cursor: pointer; border: none" class="btn btn-warning d-block text-white" onclick="activeTable(event)" data-toggle="modal" data-target="#editEmployeeModal">Update</a>
+
+
+                                  <form id="deleteForm" class="d-block"   action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete" method="post">
+                                      <input type="hidden" name="id" value="<%=user.getId()%>">
+                                      <input type="submit" onclick="confirmDelete(event);" class="btn btn-danger" value="Delete">
+                                  </form>
+                                  <!-- Script để hiển thị modal -->
+                                  <script>
+                                      function activeTable(event) {
+                                          event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+                                          document.getElementById("editEmployeeModal").style.display = "block";
+                                      }
+                                      function  confirmDelete(event) {
+                                          event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+                                          if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+                                              document.getElementById("deleteForm").submit();
+                                          }
+                                      }
+                                  </script>
+
+
+                              </td>
                     </tr>
                     <%
                          }
@@ -1234,8 +1251,8 @@
                    <div class="modal-content">
                        <form>
                            <div class="modal-header">
-                               <h4 class="modal-title">Edit Employee</h4>
-                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                               <h4 class="modal-title">Update User</h4>
+                               <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">&times;</button>
                            </div>
                            <div class="modal-body">
                                <div class="form-group">
@@ -1258,27 +1275,6 @@
                            <div class="modal-footer">
                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                <input type="submit" class="btn btn-info" value="Save">
-                           </div>
-                       </form>
-                   </div>
-               </div>
-           </div>
-           <!-- Delete Modal HTML -->
-           <div id="deleteEmployeeModal" class="modal fade">
-               <div class="modal-dialog">
-                   <div class="modal-content">
-                       <form method="post" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete">
-                           <div class="modal-header">
-                               <h4 class="modal-title">Delete Employee</h4>
-                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                           </div>
-                           <div class="modal-body">
-                               <p>Are you sure you want to delete these Records?</p>
-                               <p class="text-warning"><small>This action cannot be undone.</small></p>
-                           </div>
-                           <div class="modal-footer">
-                               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                               <input type="submit" class="btn btn-danger" value="Delete">
                            </div>
                        </form>
                    </div>
