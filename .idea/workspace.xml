@@ -10,7 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be82b9ca-43c0-45b3-b96c-f665f63d6249" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/eee04446-13c4-40fe-beff-a59e3f944410.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/Home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +31,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -50,6 +65,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -175,6 +191,8 @@
       <workItem from="1719382672797" duration="2759000" />
       <workItem from="1719455867540" duration="4861000" />
       <workItem from="1719477314685" duration="1558000" />
+      <workItem from="1719567809550" duration="12901000" />
+      <workItem from="1719586354732" duration="10078000" />
     </task>
     <servers />
   </component>

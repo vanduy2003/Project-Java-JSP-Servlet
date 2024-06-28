@@ -31,8 +31,8 @@ public class UserModel implements CommonDao <User>{
     public boolean insert(User T) {
         // insert user to database
         try {
-            String query = String.format("INSERT INTO nguoi_dung (ho_dem, ten, so_dien_thoai, ngay_sinh, chi_tieu, mat_khau, email, dia_chi, vai_tro) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                    T.getHo_dem(), T.getTen(), T.getSo_dien_thoai(), T.getNgay_sinh(), T.getChi_tieu(), T.getMat_khau(), T.getEmail(), T.getDia_chi(), T.getVai_tro());
+            String query = String.format("INSERT INTO nguoi_dung (ho_dem, ten, ho_va_ten, so_dien_thoai, ngay_sinh, chi_tieu, mat_khau, email, dia_chi, vai_tro) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                    T.getHo_dem(), T.getTen(), T.getHo_va_ten(), T.getSo_dien_thoai(), T.getNgay_sinh(), T.getChi_tieu(), T.getMat_khau(), T.getEmail(), T.getDia_chi(), T.getVai_tro());
             Statement statement = connection.createStatement();
             return statement.executeUpdate(query) > 0;
         }catch (Exception ex) {
@@ -43,16 +43,17 @@ public class UserModel implements CommonDao <User>{
 
     @Override
     public boolean update(User T) {
-       try {
-            String query = String.format("UPDATE user SET ho_dem = '%s', ten = '%s', so_dien_thoai = '%s', ngay_sinh = '%s', chi_tieu = '%s', mat_khau = '%s', email = '%s', dia_chi = '%s', vai_tro = '%s' WHERE id = '%d'",
-                    T.getHo_dem(), T.getTen(), T.getSo_dien_thoai(), T.getNgay_sinh(), T.getChi_tieu(), T.getMat_khau(), T.getEmail(), T.getDia_chi(), T.getVai_tro(), T.getId());
+        try {
+            String query = String.format("UPDATE nguoi_dung SET ho_va_ten = '%s', so_dien_thoai = '%s', ngay_sinh = '%s', chi_tieu = '%f', mat_khau = '%s', email = '%s', dia_chi = '%s', vai_tro = '%s' WHERE id = %d",
+                    T.getHo_va_ten(), T.getSo_dien_thoai(), T.getNgay_sinh(), T.getChi_tieu(), T.getMat_khau(), T.getEmail(), T.getDia_chi(), T.getVai_tro(), T.getId());
             Statement statement = connection.createStatement();
-            return  statement.executeUpdate(query)  > 0;
-       }catch (Exception ex) {
-           ex.printStackTrace();
-           return false;
-       }
+            return statement.executeUpdate(query) > 0;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
+
 
     @Override
     public boolean delete(int id) {
@@ -114,6 +115,45 @@ public class UserModel implements CommonDao <User>{
         }catch (Exception ex) {
             ex.printStackTrace();
             return 0;
+        }
+    }
+    // select user by id
+    public User selectById(int id) {
+        try {
+            String query = String.format("SELECT * FROM nguoi_dung WHERE ID = %d", id);
+            Statement statement = connection.createStatement();
+            ResultSet rt = statement.executeQuery(query);
+            if (rt.next()) {
+                User user = new User();
+                user.setId(rt.getInt("id"));
+                user.setHo_dem(rt.getString("ho_dem"));
+                user.setTen(rt.getString("ten"));
+                user.setHo_va_ten(rt.getString("ho_va_ten"));
+                user.setSo_dien_thoai(rt.getString("so_dien_thoai"));
+                user.setNgay_sinh(rt.getString("ngay_sinh"));
+                user.setChi_tieu(rt.getFloat("chi_tieu"));
+                user.setMat_khau(rt.getString("mat_khau"));
+                user.setEmail(rt.getString("email"));
+                user.setDia_chi(rt.getString("dia_chi"));
+                user.setVai_tro(rt.getString("vai_tro"));
+                return user;
+            }
+            return null;
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    // update user by id
+    public boolean updateUser(User user) {
+        try {
+            String query = String.format("UPDATE nguoi_dung SET  ho_va_ten = '%s', so_dien_thoai = '%s', ngay_sinh = '%s', chi_tieu = '%s', mat_khau = '%s', email = '%s', dia_chi = '%s', vai_tro = '%s' WHERE id = %d",
+                     user.getHo_va_ten(), user.getSo_dien_thoai(), user.getNgay_sinh(), user.getChi_tieu(), user.getMat_khau(), user.getEmail(), user.getDia_chi(), user.getVai_tro(), user.getId());
+            Statement statement = connection.createStatement();
+            return statement.executeUpdate(query) > 0;
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
         }
     }
 }

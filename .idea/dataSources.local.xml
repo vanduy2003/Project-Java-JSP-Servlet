@@ -2,8 +2,17 @@
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-241.15989.150">
     <data-source name="web_ban_trai_cay@localhost" uuid="eee04446-13c4-40fe-beff-a59e3f944410">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
       <schema-mapping />
+      <session-templates>
+        <template id="9ede7168-839e-49a4-826f-73a82e10623f" name="Template" />
+      </session-templates>
     </data-source>
   </component>
 </project>

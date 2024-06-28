@@ -61,16 +61,17 @@ public class Auth {
 
 
     public boolean registerUser(String username, String email, String phone, String password) {
-        String query = "INSERT INTO nguoi_dung (ho_dem, ten, so_dien_thoai, email, mat_khau) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO nguoi_dung (ho_dem, ten, ho_va_ten, so_dien_thoai, email, mat_khau) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             String[] nameParts = username.split(" ", 2);
             String hoDem = nameParts.length > 1 ? nameParts[0] : "";
             String ten = nameParts.length > 1 ? nameParts[1] : nameParts[0];
             ps.setString(1, hoDem);
             ps.setString(2, ten);
-            ps.setString(3, phone);
-            ps.setString(4, email);
-            ps.setString(5, password);
+            ps.setString(3, hoDem + " " + ten);
+            ps.setString(4, phone);
+            ps.setString(5, email);
+            ps.setString(6, password);
             int result = ps.executeUpdate();
             return result > 0;
         } catch (SQLException e) {
