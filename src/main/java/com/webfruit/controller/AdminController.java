@@ -16,7 +16,7 @@ import com.webfruit.dao.User;
 import com.webfruit.model.UserModel;
 import com.webfruit.model.Auth;
 
-@WebServlet(name = "admin", urlPatterns = { "/admin", "/admin/quan-ly-san-pham", "/admin/quan-ly-nguoi-dung",
+@WebServlet(name = "admin", urlPatterns = { "/admin", "/admin/quan-ly-nguoi-dung",
         "/admin/quan-ly-nguoi-dung/add-user", "/admin/quan-ly-nguoi-dung/delete", "/admin/quan-ly-nguoi-dung/update" })
 public class AdminController extends HttpServlet {
     public AdminController() {
@@ -151,10 +151,6 @@ public class AdminController extends HttpServlet {
             req.setAttribute("home", "home");
             req.removeAttribute("quanLySanPham");
             req.removeAttribute("quanLyNguoiDung");
-            req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
-        } else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-san-pham")) {
-            req.setAttribute("quanLySanPham", "quanLySanPham");
-            req.removeAttribute("home");
             req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
         } else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung")
                 || url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/add-user")

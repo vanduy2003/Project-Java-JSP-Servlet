@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.webfruit.dao.User" %><%--
+<%@ page import="com.webfruit.dao.User" %>
+<%@ page import="com.webfruit.dao.Product" %><%--
   Created by IntelliJ IDEA.
   User: My-PC
   Date: 6/23/2024
@@ -967,7 +968,8 @@
                             <h2>Quản lý <b>Sản phẩm</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                            <a href="#addProduct" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm sản phẩm</span></a>
+                            <a href="#addTypeProduct" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm loại sản phẩm</span></a>
 
                         </div>
                     </div>
@@ -981,94 +983,93 @@
 								<label for="selectAll"></label>
 							</span>
                         </th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sản phẩm</th>
+                        <th>Mô tả</th>
+                        <th>Mã giảm giá</th>
+                        <th>Số lượng sản phẩm</th>
+                        <th>Đường dẫn hình ảnh</th>
+                        <th>Tên loại sản phẩm</th>
+                        <th>Ngày thêm</th>
+                        <th>Ngày cập nhật</th>
+                        <th colspan="2" class="text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <%
+                        ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
+                        if (listProduct != null) {
+                            for (Product product : listProduct) {
+
+                    %>
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                                    </td>
+                                    <td><%=product.getID()%></td>
+                                    <td><%=product.getTen_san_pham()%></td>
+                                    <td><%=product.getGia_san_pham()%></td>
+                                    <td><%=product.getMo_ta_san_pham()%></td>
+                                    <td><%=product.getMa_giam_gia()%></td>
+                                    <td><%=product.getSo_luong_san_pham()%></td>
+                                    <td><%=product.getHinh_anh_san_pham()%></td>
+                                    <input type="hidden" class="id_type_product" value="<%=product.getID_loai_san_pham()%>"/>
+                                    <td><%=product.getTen_loai_san_pham()%></td>
+                                    <td><%=product.getNgay_them()%></td>
+                                    <td><%=product.getNgay_cap_nhat()%></td>
+                                    <td colspan="2" class="d-flex gap-3">
+                                        <a href="#updateProduct" class="edit" data-toggle="modal"><i class="material-icons" onclick="filterDataToUpdateProduct(event)" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <script>
+                                           function filterDataToUpdateProduct(event) {
+
+                                                  let mainElement = event.target.parentElement.parentElement.parentElement
+                                                  let listTd = mainElement.querySelectorAll("td")
+                                                     document.getElementById("ProductID").value = listTd[1].innerText
+                                                        document.getElementById("update_product_name").value = listTd[2].innerText
+                                                        document.getElementById("update_product_gia_san_pham").value = listTd[3].innerText
+                                                        document.getElementById("update_product_mo_ta").value = listTd[4].innerText
+                                                        document.getElementById("update_product_ma_giam_gia").value = listTd[5].innerText
+                                                        document.getElementById("update_product_so_luong_san_pham").value = listTd[6].innerText
+                                                        document.getElementById("update_product_duong_dan_anh").value = listTd[7].innerText
+
+                                               var selectElement = document.getElementById("select-option-update-product");
+
+                                               // Lặp qua các tùy chọn trong thẻ <select> để tìm và chọn giá trị tương ứng
+                                               for (var i = 0; i < selectElement.options.length; i++) {
+                                                   if (selectElement?.options[i]?.text.trim() === listTd[8]?.innerText) {
+                                                       selectElement.options[i].selected = true;
+                                                       break;
+                                                   }
+                                               }
+                                           }
+                                           function handleClickDeleteProduct(event) {
+                                               event.preventDefault(); // Ngăn chặn chuyển hướng mặc định
+                                               if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
+                                                   // Nếu xác nhận là true, tiến hành chuyển hướng
+                                                   window.location.href = event.currentTarget.getAttribute('href');
+                                               }
+                                           }
+
+
+                                        </script>
+                                        <a href="${pageContext.request.contextPath}/admin/quan-ly-san-pham/delete?idproduct=<%=product.getID()%>" onclick="handleClickDeleteProduct(event)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    </td>
+                                </tr>
+                    <%
+                            }
+                        }else {
+
+                    %>
                     <tr>
-                        <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-                        </td>
-                        <td>Thomas Hardy</td>
-                        <td>thomashardy@mail.com</td>
-                        <td>89 Chiaroscuro Rd, Portland, USA</td>
-                        <td>(171) 555-2222</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
+                        <td colspan="12" class="text-center">Không có sản phẩm nào</td>
                     </tr>
-                    <tr>
-                        <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-                        </td>
-                        <td>Dominique Perrier</td>
-                        <td>dominiqueperrier@mail.com</td>
-                        <td>Obere Str. 57, Berlin, Germany</td>
-                        <td>(313) 555-5735</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-                        </td>
-                        <td>Maria Anders</td>
-                        <td>mariaanders@mail.com</td>
-                        <td>25, rue Lauriston, Paris, France</td>
-                        <td>(503) 555-9931</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-							</span>
-                        </td>
-                        <td>Fran Wilson</td>
-                        <td>franwilson@mail.com</td>
-                        <td>C/ Araquil, 67, Madrid, Spain</td>
-                        <td>(204) 619-5731</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-                        </td>
-                        <td>Martin Blank</td>
-                        <td>martinblank@mail.com</td>
-                        <td>Via Monte Bianco 34, Turin, Italy</td>
-                        <td>(480) 631-2097</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
+                    <%
+                        }
+                    %>
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -1125,7 +1126,7 @@
                         if (listUser != null) {
                             for (User user : listUser) {
                     %>
-                          <tr>
+                          <tr >
                         <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -1141,7 +1142,7 @@
                         <td><%=user.getMat_khau()%></td>
                         <td><%=user.getDia_chi()%></td>
                         <td><%=user.getVai_tro()%></td>
-                              <td class="d-flex" style="gap: 5px" >
+                              <td class="d-flex" style="gap: 5px; height: 100%; align-items: center" >
                                   <form class="form-update-user" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/update" method="get">
                                       <input type="hidden" name="id" value="<%=user.getId()%>">
                                   </form>
@@ -1326,6 +1327,169 @@
                </div>
            </div>
        </div>
+        <div style="display: ${quanLySanPham != null ? "block" : "none"}" >
+            <!-- Edit Modal HTML -->
+            <div id="addProduct" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="${pageContext.request.contextPath}/admin/quan-ly-san-pham/add-product"  method="post">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Thêm sản phẩm</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <input type="text" name="add_product_ten_san_pham" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Giá sản phẩm</label>
+                                    <input type="text" name="add_product_gia_san_pham" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <textarea id="add_product_mo_ta" name="update_product_mo_ta" class="form-control" required style="min-height: 100px;"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mã giảm giá</label>
+                                    <input type="text" name="add_product_ma_giam_gia" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng sản phẩm</label>
+                                    <input type="text" name="add_product_so_luong_san_pham" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Hình ảnh sản phẩm</label>
+                                    <input type="text" name="add_product_hinh_anh_san_pham" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại sản phẩm</label>
+                                    <select name="id-type-product" id="select-option-add-product" class="form-control">
+                                       <% ArrayList<Product> listTypeProduct = (ArrayList<Product>) request.getAttribute("listTypeProduct");
+                                            if (listTypeProduct != null) {
+                                                boolean isCheck = true;
+                                                for (Product product : listTypeProduct) {
+                                                    if (isCheck == true) {
+                                       %>
+
+                                            <option value=<%=product.getID_loai_san_pham()%> selected><%=product.getTen_loai_san_pham()%></option>
+                                        <% isCheck = false;
+                                        }else {
+
+                                        %>
+                                            <option value=<%=product.getID_loai_san_pham()%>><%=product.getTen_loai_san_pham()%></option>
+
+                                    <%}
+
+                                    }
+                                    }%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" class="btn btn-success" value="Add">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="addTypeProduct" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="${pageContext.request.contextPath}/admin/quan-ly-san-pham/add-type-product"  method="post">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Thêm loại sản phẩm</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Tên loại sản phẩm</label>
+                                    <input type="text" name="add_ten_loai_san_pham" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" class="btn btn-success" value="Add">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit Modal HTML -->
+
+            <!-- Modal -->
+            <div id="updateProduct" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="editFormUpdateProduct" action="${pageContext.request.contextPath}/admin/quan-ly-san-pham/update-product" method="post">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Cập nhật sản phẩm</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text" id="ProductID" name="id_update_user" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <input type="text" id="update_product_name" name="update_product_name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Giá sản phẩm</label>
+                                    <input type="text" id="update_product_gia_san_pham" name="update_product_gia_san_pham" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <textarea id="update_product_mo_ta" name="update_product_mo_ta" class="form-control" required style="min-height: 100px;"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mã giảm giá</label>
+                                    <input type="text" id="update_product_ma_giam_gia" name="update_product_ma_giam_gia" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng sản phẩm</label>
+                                    <input type="number" id="update_product_so_luong_san_pham" name="update_product_so_luong_san_pham" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Đường dẫn ảnh</label>
+                                    <input type="text" id="update_product_duong_dan_anh" name="update_product_duong_dan_anh" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại sản phẩm</label>
+                                    <select name="id-type-product-update" id="select-option-update-product" class="form-control">
+                                        <% ArrayList<Product> listTypeProductUpdate = (ArrayList<Product>) request.getAttribute("listTypeProduct");
+                                            if (listTypeProductUpdate != null) {
+                                                boolean isCheck = true;
+                                                for (Product product : listTypeProductUpdate) {
+                                                    if (isCheck == true) {
+                                        %>
+
+                                        <option value=<%=product.getID_loai_san_pham()%> selected><%=product.getTen_loai_san_pham()%></option>
+                                        <% isCheck = false;
+                                        }else {
+
+                                        %>
+                                        <option value=<%=product.getID_loai_san_pham()%>><%=product.getTen_loai_san_pham()%></option>
+
+                                        <%}
+
+                                        }
+                                        }%>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" onclick="handleCheckUpdate(event)" class="btn btn-info" value="Save">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.content -->
     <div class="clearfix"></div>

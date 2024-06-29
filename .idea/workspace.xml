@@ -10,23 +10,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be82b9ca-43c0-45b3-b96c-f665f63d6249" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/eee04446-13c4-40fe-beff-a59e3f944410.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandleCRUDProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/Home.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Product.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,22 +59,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Tomcat Server.Tomcat 10.1.24.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/JavaTest/Project/Project-Java-JSP-Servlet",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.24.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/JavaTest/Project/Project-Java-JSP-Servlet&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JavaTest\Project\Project-Java-JSP-Servlet\src\main\webapp\views\admin" />
@@ -192,7 +198,9 @@
       <workItem from="1719455867540" duration="4861000" />
       <workItem from="1719477314685" duration="1558000" />
       <workItem from="1719567809550" duration="12901000" />
-      <workItem from="1719586354732" duration="10078000" />
+      <workItem from="1719586354732" duration="10224000" />
+      <workItem from="1719647999530" duration="16694000" />
+      <workItem from="1719665129942" duration="875000" />
     </task>
     <servers />
   </component>
