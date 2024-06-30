@@ -1,5 +1,7 @@
 package com.webfruit.controller;
 
+import com.webfruit.dao.Product;
+import com.webfruit.model.HandleCRUDProduct;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -15,6 +17,7 @@ import com.webfruit.dao.User;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "trang-chu", urlPatterns = {"/trang-chu"})
 public class HomeController extends HttpServlet {
@@ -34,6 +37,30 @@ public class HomeController extends HttpServlet {
                 ex.printStackTrace();
            }
        }
+
+        try {
+
+            ArrayList<Product> selectAllTypeProduct = HandleCRUDProduct.getInstance().selectAllLoaiSanPham();
+            ArrayList<Product> allVegetables = HandleCRUDProduct.getInstance().selectAllProductsByNameEquasVegetables();
+            req.setAttribute("typesProducts", selectAllTypeProduct);
+
+            req.setAttribute("vegetables", allVegetables);
+            ArrayList<Product> allProductsSelect = HandleCRUDProduct.getInstance().selectAllProducts();
+            req.setAttribute("allProducts", allProductsSelect );
+            String idType = req.getParameter("idtype");
+            if (idType != null) {
+                ArrayList<Product> products = HandleCRUDProduct.getInstance().selectAllProductsByTypeProduct(Integer.parseInt(idType));
+
+                req.setAttribute("products", products);
+            }else {
+                req.setAttribute("products", allProductsSelect);
+            }
+
+
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 

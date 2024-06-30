@@ -204,5 +204,62 @@ public class HandleCRUDProduct {
         }
         return false;
     }
+    // select all products by type product
+    public ArrayList<Product> selectAllProductsByTypeProduct(int ID_loai_san_pham) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            // Tạo câu lệnh SQL để lấy tất cả sản phẩm theo loại sản phẩm
+            String query = "SELECT san_pham.ID, san_pham.ten_san_pham, san_pham.gia_san_pham, san_pham.mo_ta_san_pham, san_pham.ma_giam_gia, san_pham.so_luong_san_pham, san_pham.hinh_anh_san_pham, loai_san_pham.id as ID_loai_san_pham, loai_san_pham.ten_loai_san_pham, san_pham.ngay_them, san_pham.ngay_cap_nhat FROM san_pham inner join san_pham_and_loai_san_pham on san_pham.ID = san_pham_and_loai_san_pham.ID_san_pham INNER JOIN loai_san_pham on loai_san_pham.id = san_pham_and_loai_san_pham.ID_loai_san_pham WHERE loai_san_pham.id = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID_loai_san_pham);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setID(rs.getInt("ID"));
+                product.setTen_san_pham(rs.getString("ten_san_pham"));
+                product.setGia_san_pham(rs.getDouble("gia_san_pham"));
+                product.setMo_ta_san_pham(rs.getString("mo_ta_san_pham"));
+                product.setMa_giam_gia(rs.getString("ma_giam_gia"));
+                product.setSo_luong_san_pham(rs.getString("so_luong_san_pham"));
+                product.setHinh_anh_san_pham(rs.getString("hinh_anh_san_pham"));
+                product.setNgay_them(rs.getString("ngay_them"));
+                product.setNgay_cap_nhat(rs.getString("ngay_cap_nhat"));
+                product.setTen_loai_san_pham(rs.getString("ten_loai_san_pham"));
+                product.setID_loai_san_pham(rs.getInt("ID_loai_san_pham"));
+                products.add(product);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return products;
+    }
+    public ArrayList<Product> selectAllProductsByNameEquasVegetables() {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            // Tạo câu lệnh SQL để lấy tất cả sản phẩm theo loại sản phẩm
+            String query = "SELECT san_pham.ID, san_pham.ten_san_pham, san_pham.gia_san_pham, san_pham.mo_ta_san_pham, san_pham.ma_giam_gia, san_pham.so_luong_san_pham, san_pham.hinh_anh_san_pham, loai_san_pham.id as ID_loai_san_pham, loai_san_pham.ten_loai_san_pham, san_pham.ngay_them, san_pham.ngay_cap_nhat FROM san_pham inner join san_pham_and_loai_san_pham on san_pham.ID = san_pham_and_loai_san_pham.ID_san_pham INNER JOIN loai_san_pham on loai_san_pham.id = san_pham_and_loai_san_pham.ID_loai_san_pham WHERE loai_san_pham.ten_loai_san_pham = 'Vegetables'";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setID(rs.getInt("ID"));
+                product.setTen_san_pham(rs.getString("ten_san_pham"));
+                product.setGia_san_pham(rs.getDouble("gia_san_pham"));
+                product.setMo_ta_san_pham(rs.getString("mo_ta_san_pham"));
+                product.setMa_giam_gia(rs.getString("ma_giam_gia"));
+                product.setSo_luong_san_pham(rs.getString("so_luong_san_pham"));
+                product.setHinh_anh_san_pham(rs.getString("hinh_anh_san_pham"));
+                product.setNgay_them(rs.getString("ngay_them"));
+                product.setNgay_cap_nhat(rs.getString("ngay_cap_nhat"));
+                product.setTen_loai_san_pham(rs.getString("ten_loai_san_pham"));
+                product.setID_loai_san_pham(rs.getInt("ID_loai_san_pham"));
+                products.add(product);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return products;
+    }
 }
 

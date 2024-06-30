@@ -10,17 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be82b9ca-43c0-45b3-b96c-f665f63d6249" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandleCRUDProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HandleCartProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandleCRUDProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandleCRUDProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/HandleCRUDProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/HandleCRUDProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/HandleCRUDProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/model/HandleCRUDProduct.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +83,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 10.1.24" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.24" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/Project_JSP_Servlet_war_exploded/trang-chu" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Project_JSP_Servlet:war exploded">
@@ -200,7 +202,9 @@
       <workItem from="1719567809550" duration="12901000" />
       <workItem from="1719586354732" duration="10224000" />
       <workItem from="1719647999530" duration="16694000" />
-      <workItem from="1719665129942" duration="875000" />
+      <workItem from="1719665129942" duration="1014000" />
+      <workItem from="1719673742597" duration="3349000" />
+      <workItem from="1719734589145" duration="13063000" />
     </task>
     <servers />
   </component>

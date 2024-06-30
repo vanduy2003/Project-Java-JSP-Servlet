@@ -1003,65 +1003,65 @@
                             for (Product product : listProduct) {
 
                     %>
-                                <tr>
-                                    <td>
+                    <tr>
+                        <td>
                                         <span class="custom-checkbox">
                                             <input type="checkbox" id="checkbox" name="options[]" value="1">
                                             <label for="checkbox1"></label>
                                         </span>
-                                    </td>
-                                    <td><%=product.getID()%></td>
-                                    <td><%=product.getTen_san_pham()%></td>
-                                    <td><%=product.getGia_san_pham()%></td>
-                                    <td><%=product.getMo_ta_san_pham()%></td>
-                                    <td><%=product.getMa_giam_gia()%></td>
-                                    <td><%=product.getSo_luong_san_pham()%></td>
-                                    <td><%=product.getHinh_anh_san_pham()%></td>
-                                    <input type="hidden" class="id_type_product" value="<%=product.getID_loai_san_pham()%>"/>
-                                    <td><%=product.getTen_loai_san_pham()%></td>
-                                    <td><%=product.getNgay_them()%></td>
-                                    <td><%=product.getNgay_cap_nhat()%></td>
-                                    <td colspan="2" class="d-flex gap-3">
-                                        <a href="#updateProduct" class="edit" data-toggle="modal"><i class="material-icons" onclick="filterDataToUpdateProduct(event)" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <script>
-                                           function filterDataToUpdateProduct(event) {
+                        </td>
+                        <td><%=product.getID()%></td>
+                        <td><%=product.getTen_san_pham()%></td>
+                        <td><%=product.getGia_san_pham()%></td>
+                        <td><%=product.getMo_ta_san_pham()%></td>
+                        <td><%=product.getMa_giam_gia()%></td>
+                        <td><%=product.getSo_luong_san_pham()%></td>
+                        <td><img style="width: 300px; height: 150px; object-fit: cover" src="<%=product.getHinh_anh_san_pham()%>" alt="img/detail"></td>
+                        <input type="hidden" class="id_type_product" value="<%=product.getID_loai_san_pham()%>"/>
+                        <td><%=product.getTen_loai_san_pham()%></td>
+                        <td><%=product.getNgay_them()%></td>
+                        <td><%=product.getNgay_cap_nhat()%></td>
+                        <td colspan="2" class="d-flex gap-3">
+                            <a href="#updateProduct" class="edit" data-toggle="modal"><i class="material-icons" onclick="filterDataToUpdateProduct(event)" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <script>
+                                function filterDataToUpdateProduct(event) {
 
-                                                  let mainElement = event.target.parentElement.parentElement.parentElement
-                                                  let listTd = mainElement.querySelectorAll("td")
-                                                     document.getElementById("ProductID").value = listTd[1].innerText
-                                                        document.getElementById("update_product_name").value = listTd[2].innerText
-                                                        document.getElementById("update_product_gia_san_pham").value = listTd[3].innerText
-                                                        document.getElementById("update_product_mo_ta").value = listTd[4].innerText
-                                                        document.getElementById("update_product_ma_giam_gia").value = listTd[5].innerText
-                                                        document.getElementById("update_product_so_luong_san_pham").value = listTd[6].innerText
-                                                        document.getElementById("update_product_duong_dan_anh").value = listTd[7].innerText
+                                    let mainElement = event.target.parentElement.parentElement.parentElement
+                                    let listTd = mainElement.querySelectorAll("td")
+                                    document.getElementById("ProductID").value = listTd[1].innerText
+                                    document.getElementById("update_product_name").value = listTd[2].innerText
+                                    document.getElementById("update_product_gia_san_pham").value = listTd[3].innerText
+                                    document.getElementById("update_product_mo_ta").value = listTd[4].innerText
+                                    document.getElementById("update_product_ma_giam_gia").value = listTd[5].innerText
+                                    document.getElementById("update_product_so_luong_san_pham").value = listTd[6].innerText
+                                    document.getElementById("update_product_duong_dan_anh").value = listTd[7].innerText
 
-                                               var selectElement = document.getElementById("select-option-update-product");
+                                    var selectElement = document.getElementById("select-option-update-product");
 
-                                               // Lặp qua các tùy chọn trong thẻ <select> để tìm và chọn giá trị tương ứng
-                                               for (var i = 0; i < selectElement.options.length; i++) {
-                                                   if (selectElement?.options[i]?.text.trim() === listTd[8]?.innerText) {
-                                                       selectElement.options[i].selected = true;
-                                                       break;
-                                                   }
-                                               }
-                                           }
-                                           function handleClickDeleteProduct(event) {
-                                               event.preventDefault(); // Ngăn chặn chuyển hướng mặc định
-                                               if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
-                                                   // Nếu xác nhận là true, tiến hành chuyển hướng
-                                                   window.location.href = event.currentTarget.getAttribute('href');
-                                               }
-                                           }
+                                    // Lặp qua các tùy chọn trong thẻ <select> để tìm và chọn giá trị tương ứng
+                                    for (var i = 0; i < selectElement.options.length; i++) {
+                                        if (selectElement?.options[i]?.text.trim() === listTd[8]?.innerText) {
+                                            selectElement.options[i].selected = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                function handleClickDeleteProduct(event) {
+                                    event.preventDefault(); // Ngăn chặn chuyển hướng mặc định
+                                    if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
+                                        // Nếu xác nhận là true, tiến hành chuyển hướng
+                                        window.location.href = event.currentTarget.getAttribute('href');
+                                    }
+                                }
 
 
-                                        </script>
-                                        <a href="${pageContext.request.contextPath}/admin/quan-ly-san-pham/delete?idproduct=<%=product.getID()%>" onclick="handleClickDeleteProduct(event)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                    </td>
-                                </tr>
+                            </script>
+                            <a href="${pageContext.request.contextPath}/admin/quan-ly-san-pham/delete?idproduct=<%=product.getID()%>" onclick="handleClickDeleteProduct(event)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
                     <%
-                            }
-                        }else {
+                        }
+                    }else {
 
                     %>
                     <tr>
@@ -1126,7 +1126,7 @@
                         if (listUser != null) {
                             for (User user : listUser) {
                     %>
-                          <tr >
+                    <tr >
                         <td>
 							<span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -1135,63 +1135,63 @@
                         </td>
                         <td ><%=user.getId()%></td>
                         <td><%=user.getHo_va_ten()%></td>
-                              <td><%=user.getNgay_sinh()%></td>
+                        <td><%=user.getNgay_sinh()%></td>
                         <td><%=user.getChi_tieu()%></td>
                         <td><%=user.getSo_dien_thoai()%></td>
                         <td><%=user.getEmail()%></td>
                         <td><%=user.getMat_khau()%></td>
                         <td><%=user.getDia_chi()%></td>
                         <td><%=user.getVai_tro()%></td>
-                              <td class="d-flex" style="gap: 5px; height: 100%; align-items: center" >
-                                  <form class="form-update-user" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/update" method="get">
-                                      <input type="hidden" name="id" value="<%=user.getId()%>">
-                                  </form>
-                                  <a href="#editEmployeeModal" data-toggle="modal" class="btn btn-warning text-white btn-update-user"  onclick="activeTable(event)" >Update</a>
-                                  <form id="deleteForm" class="d-block" onclick="confirmDelete(event);"  action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete" method="post">
-                                      <input type="hidden" name="id" value="<%=user.getId()%>">
-                                      <input type="submit"  class="btn btn-danger" value="Delete">
-                                  </form>
-                                  <!-- Script để hiển thị modal -->
-                                  <script>
+                        <td class="d-flex" style="gap: 5px; height: 100%; align-items: center" >
+                            <form class="form-update-user" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/update" method="get">
+                                <input type="hidden" name="id" value="<%=user.getId()%>">
+                            </form>
+                            <a href="#editEmployeeModal" data-toggle="modal" class="btn btn-warning text-white btn-update-user"  onclick="activeTable(event)" >Update</a>
+                            <form id="deleteForm" class="d-block" onclick="confirmDelete(event);"  action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/delete" method="post">
+                                <input type="hidden" name="id" value="<%=user.getId()%>">
+                                <input type="submit"  class="btn btn-danger" value="Delete">
+                            </form>
+                            <!-- Script để hiển thị modal -->
+                            <script>
 
-                                      function activeTable(event) {
-                                          let mainElement = event.target.parentElement.parentElement
-                                          let listTd = mainElement.querySelectorAll("td")
-                                          document.getElementById("userId").value = listTd[1].innerText
-                                          document.getElementById("userName").value = listTd[2].innerText
-                                          document.getElementById("NgaySinh").value = listTd[3].innerText
-                                          document.getElementById("userChiTieu").value = listTd[4].innerText
-                                            document.getElementById("userPhone").value = listTd[5].innerText
-                                            document.getElementById("userEmail").value = listTd[6].innerText
-                                            document.getElementById("userPassword").value = listTd[7].innerText
-                                            document.getElementById("userAddress").value = listTd[8].innerText
-                                          document.getElementById("userRole").value = listTd[9].innerText
+                                function activeTable(event) {
+                                    let mainElement = event.target.parentElement.parentElement
+                                    let listTd = mainElement.querySelectorAll("td")
+                                    document.getElementById("userId").value = listTd[1].innerText
+                                    document.getElementById("userName").value = listTd[2].innerText
+                                    document.getElementById("NgaySinh").value = listTd[3].innerText
+                                    document.getElementById("userChiTieu").value = listTd[4].innerText
+                                    document.getElementById("userPhone").value = listTd[5].innerText
+                                    document.getElementById("userEmail").value = listTd[6].innerText
+                                    document.getElementById("userPassword").value = listTd[7].innerText
+                                    document.getElementById("userAddress").value = listTd[8].innerText
+                                    document.getElementById("userRole").value = listTd[9].innerText
 
-                                      }
-                                      function  confirmDelete(event) {
-                                          event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-                                          if (confirm("Bạn có chắc chắn muốn xóa không?")) {
-                                              document.getElementById("deleteForm").submit();
-                                          }
-                                      }
+                                }
+                                function  confirmDelete(event) {
+                                    event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+                                    if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+                                        document.getElementById("deleteForm").submit();
+                                    }
+                                }
 
-                                      function  handleCheckUpdate(event) {
-                                          event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-                                          let check = confirm("Bạn có chắc chắn muốn cập nhật không?")
-                                          if (check  === true) {
-                                              document.getElementById("editFormUpdateUser").submit();
-                                          }
-                                      }
-
-
-                                  </script>
+                                function  handleCheckUpdate(event) {
+                                    event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+                                    let check = confirm("Bạn có chắc chắn muốn cập nhật không?")
+                                    if (check  === true) {
+                                        document.getElementById("editFormUpdateUser").submit();
+                                    }
+                                }
 
 
-                              </td>
+                            </script>
+
+
+                        </td>
                     </tr>
                     <%
-                         }
-                        }else {
+                        }
+                    }else {
                     %>
                     <tr >
                         <td colspan="11">Không có dữ liệu</td>
@@ -1216,117 +1216,117 @@
             </div>
         </div>
 
-       <div style="display: ${quanLyNguoiDung != null ? "block" : "none"}" >
-           <!-- Edit Modal HTML -->
-           <div id="addEmployeeModal" class="modal fade">
-               <div class="modal-dialog">
-                   <div class="modal-content">
-                       <form action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/add-user"  method="post">
-                           <div class="modal-header">
-                               <h4 class="modal-title">Thêm người dùng</h4>
-                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                           </div>
-                           <div class="modal-body">
-                               <div class="form-group">
-                                   <label>Họ đệm</label>
-                                   <input type="text" name="ho-dem" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Tên</label>
-                                   <input type="text" name="ten" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Ngày sinh</label>
-                                   <input type="date" name="ngay-sinh" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Số điện thoại</label>
-                                   <input type="number" name="so-dien-thoai" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Email</label>
-                                   <input type="email" name="email" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Mật khẩu</label>
-                                   <input type="text" name="mat-khau" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Địa chỉ</label>
-                                   <input type="text" name="dia-chi" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Vai Trò</label>
-                                   <input type="text" name="vai-tro" class="form-control" required>
-                               </div>
-                           </div>
-                           <div class="modal-footer">
-                               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                               <input type="submit" class="btn btn-success" value="Add">
-                           </div>
-                       </form>
-                   </div>
-               </div>
-           </div>
-           <!-- Edit Modal HTML -->
+        <div style="display: ${quanLyNguoiDung != null ? "block" : "none"}" >
+            <!-- Edit Modal HTML -->
+            <div id="addEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/add-user"  method="post">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Thêm người dùng</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Họ đệm</label>
+                                    <input type="text" name="ho-dem" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên</label>
+                                    <input type="text" name="ten" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ngày sinh</label>
+                                    <input type="date" name="ngay-sinh" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <input type="number" name="so-dien-thoai" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu</label>
+                                    <input type="text" name="mat-khau" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" name="dia-chi" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Vai Trò</label>
+                                    <input type="text" name="vai-tro" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" class="btn btn-success" value="Add">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit Modal HTML -->
 
-           <!-- Modal -->
-           <div id="editEmployeeModal" class="modal fade">
-               <div class="modal-dialog">
-                   <div class="modal-content">
-                       <form id="editFormUpdateUser" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/update" method="post">
-                           <div class="modal-header">
-                               <h4 class="modal-title">Update User</h4>
-                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                           </div>
-                           <div class="modal-body">
-                               <div class="form-group">
-                                   <label>ID</label>
-                                   <input type="text" id="userId" name="id_update_user" class="form-control" readonly>
-                               </div>
-                               <div class="form-group">
-                                   <label>Họ tên</label>
-                                   <input type="text" id="userName" name="ho_va_ten_update_user" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Ngày sinh</label>
-                                   <input type="text" id="NgaySinh" name="ngay_sinh_update_user" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Chi tiêu</label>
-                                   <input type="text" id="userChiTieu" name="chi_tieu_update_user" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Số điện thoại</label>
-                                   <input type="text" id="userPhone" name="so_dien_thoai_update_user" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Email</label>
-                                   <input type="email" id="userEmail" name="email_update_user" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Mật khẩu</label>
-                                   <input type="text" id="userPassword" name="mat_khau_update_user" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Địa chỉ</label>
-                                   <input type="text" id="userAddress" name="dia_chi_update_user" class="form-control" required>
-                               </div>
-                               <div class="form-group">
-                                   <label>Vai trò</label>
-                                   <input type="text" id="userRole" name="vai_tro_update_user" class="form-control" required>
-                               </div>
-                           </div>
-                           ${error != null ? "<div class='alert alert-danger' role='alert'>" + error + "</div>" : ""}
-                           <div class="modal-footer">
-                               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                               <input type="submit" onclick="handleCheckUpdate(event)" class="btn btn-info" value="Save">
-                           </div>
-                       </form>
-                   </div>
-               </div>
-           </div>
-       </div>
+            <!-- Modal -->
+            <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="editFormUpdateUser" action="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung/update" method="post">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update User</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text" id="userId" name="id_update_user" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Họ tên</label>
+                                    <input type="text" id="userName" name="ho_va_ten_update_user" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ngày sinh</label>
+                                    <input type="text" id="NgaySinh" name="ngay_sinh_update_user" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Chi tiêu</label>
+                                    <input type="text" id="userChiTieu" name="chi_tieu_update_user" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <input type="text" id="userPhone" name="so_dien_thoai_update_user" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="userEmail" name="email_update_user" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu</label>
+                                    <input type="text" id="userPassword" name="mat_khau_update_user" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" id="userAddress" name="dia_chi_update_user" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Vai trò</label>
+                                    <input type="text" id="userRole" name="vai_tro_update_user" class="form-control" required>
+                                </div>
+                            </div>
+                            ${error != null ? "<div class='alert alert-danger' role='alert'>" + error + "</div>" : ""}
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                <input type="submit" onclick="handleCheckUpdate(event)" class="btn btn-info" value="Save">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div style="display: ${quanLySanPham != null ? "block" : "none"}" >
             <!-- Edit Modal HTML -->
             <div id="addProduct" class="modal fade">
@@ -1365,24 +1365,24 @@
                                 <div class="form-group">
                                     <label>Loại sản phẩm</label>
                                     <select name="id-type-product" id="select-option-add-product" class="form-control">
-                                       <% ArrayList<Product> listTypeProduct = (ArrayList<Product>) request.getAttribute("listTypeProduct");
+                                        <% ArrayList<Product> listTypeProduct = (ArrayList<Product>) request.getAttribute("listTypeProduct");
                                             if (listTypeProduct != null) {
                                                 boolean isCheck = true;
                                                 for (Product product : listTypeProduct) {
                                                     if (isCheck == true) {
-                                       %>
+                                        %>
 
-                                            <option value=<%=product.getID_loai_san_pham()%> selected><%=product.getTen_loai_san_pham()%></option>
+                                        <option value=<%=product.getID_loai_san_pham()%> selected><%=product.getTen_loai_san_pham()%></option>
                                         <% isCheck = false;
                                         }else {
 
                                         %>
-                                            <option value=<%=product.getID_loai_san_pham()%>><%=product.getTen_loai_san_pham()%></option>
+                                        <option value=<%=product.getID_loai_san_pham()%>><%=product.getTen_loai_san_pham()%></option>
 
-                                    <%}
+                                        <%}
 
-                                    }
-                                    }%>
+                                        }
+                                        }%>
                                     </select>
                                 </div>
                             </div>
