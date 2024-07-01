@@ -27,6 +27,7 @@ public class HomeController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         String IDUser = (String) session.getAttribute("IDUser");
        if (IDUser != null) {
@@ -59,6 +60,19 @@ public class HomeController extends HttpServlet {
 
         }catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        // check cart session sau do dem so luong san pham trong gio hang
+        ArrayList<Product> cart = (ArrayList<Product>) session.getAttribute("cart");
+        if (cart != null) {
+            int count = 0;
+            for (Product p : cart) {
+                count += Integer.parseInt(p.getSo_luong_san_pham());
+            }
+            // luu vao session de dung chung
+            session.setAttribute("quantityProduct", count);
+        }else {
+            session.setAttribute("quantityProduct", 0);
         }
 
         req.getRequestDispatcher("index.jsp").forward(req, resp);

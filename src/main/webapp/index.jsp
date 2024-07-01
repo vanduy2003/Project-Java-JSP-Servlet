@@ -39,6 +39,7 @@
 
 <body>
 
+
 <!-- Spinner Start -->
 <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
     <div class="spinner-grow text-primary" role="status"></div>
@@ -75,19 +76,19 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            <a href="${pageContext.request.contextPath}/views/web/cart.jsp" class="dropdown-item">Cart</a>
+                            <a href="cart" class="dropdown-item">Cart</a>
                             <a href="${pageContext.request.contextPath}/views/web/chackout.jsp" class="dropdown-item">Chackout</a>
                             <a href="${pageContext.request.contextPath}/views/web/testtimonial.jsp" class="dropdown-item">Testimonial</a>
                             <a href="${pageContext.request.contextPath}/views/web/404.jsp" class="dropdown-item">404 Page</a>
                         </div>
                     </div>
-                    <a href="views/web/contact.jsp" class="nav-item nav-link">Contact</a>
+                    <a href="test" class="nav-item nav-link">Contact</a>
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                    <a href="${pageContext.request.contextPath}/views/web/cart.jsp" class="position-relative me-4 my-auto">
+                    <a href="${pageContext.request.contextPath}/cart" class="position-relative me-4 my-auto">
                         <i class="fa fa-shopping-bag fa-2x"></i>
-                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">${quantityProduct}</span>
                     </a>
                     <div class="nav-item dropdown">
                         <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -338,7 +339,7 @@
                                             <p><%=product.getMo_ta_san_pham()%></p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0">$<%=product.getGia_san_pham()%> / kg</p>
-                                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <a href="${pageContext.request.contextPath}/add-to-cart?IDProduct=<%=product.getID()%>" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                             </div>
                                         </div>
                                     </div>
@@ -603,7 +604,7 @@
                     <p><%= vegetable.getMo_ta_san_pham() %></p>
                     <div class="d-flex justify-content-between flex-lg-wrap">
                         <p class="text-dark fs-5 fw-bold mb-0">$<%= vegetable.getGia_san_pham() %> / kg</p>
-                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                        <a href=${pageContext.request.contextPath}/add-to-cart?IDProduct=<%=vegetable.getID()%> class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -676,7 +677,7 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <h4 class="mb-3"><%=bestsalerProduct.getGia_san_pham()%> $</h4>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                            <a href=${pageContext.request.contextPath}/add-to-cart?IDProduct=<%=bestsalerProduct.getID()%> class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                         </div>
                     </div>
                 </div>
@@ -706,7 +707,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <h4 class="mb-3"><%=bestsalerProduct.getGia_san_pham()%> $</h4>
-                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                        <a href=${pageContext.request.contextPath}/add-to-cart?IDProduct=<%=bestsalerProduct.getID()%> class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -949,7 +950,6 @@
 <script src="${pageContext.request.contextPath}/views/web/lib/waypoints/waypoints.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/web/lib/lightbox/js/lightbox.min.js"></script>
 <script src="${pageContext.request.contextPath}/views/web/lib/owlcarousel/owl.carousel.min.js"></script>
-
 <!-- Template Javascript -->
 <script src="${pageContext.request.contextPath}/views/web/js/main.js"></script>
 </body>

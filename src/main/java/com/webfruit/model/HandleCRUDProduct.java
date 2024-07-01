@@ -15,6 +15,7 @@ public class HandleCRUDProduct {
     public static HandleCRUDProduct getInstance() throws SQLException {
         return new HandleCRUDProduct();
     }
+
     // close connection
     public void closeConnection() {
         try {
@@ -23,6 +24,7 @@ public class HandleCRUDProduct {
             ex.printStackTrace();
         }
     }
+
     // createProduct
     public boolean createProduct(Product product) {
         try {
@@ -67,6 +69,7 @@ public class HandleCRUDProduct {
         }
         return false;
     }
+
     // updateProduct
     public boolean updateProduct(Product product) {
         try {
@@ -77,7 +80,7 @@ public class HandleCRUDProduct {
             System.out.println("Check SLSP: " + product.getSo_luong_san_pham());
             // Thiết lập giá trị cho các tham số
             ps.setString(1, product.getTen_san_pham());
-            ps.setDouble(2, product.getGia_san_pham() );
+            ps.setDouble(2, product.getGia_san_pham());
             ps.setString(3, product.getMo_ta_san_pham());
             ps.setString(4, product.getMa_giam_gia());
             ps.setInt(5, Integer.parseInt(product.getSo_luong_san_pham()));
@@ -106,6 +109,7 @@ public class HandleCRUDProduct {
         }
         return false;
     }
+
     // deleteProduct
     public boolean deleteProduct(long ID) {
         try {
@@ -144,7 +148,7 @@ public class HandleCRUDProduct {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               Product product = new Product();
+                Product product = new Product();
                 product.setID(rs.getInt("ID"));
                 product.setTen_san_pham(rs.getString("ten_san_pham"));
                 product.setGia_san_pham(rs.getDouble("gia_san_pham"));
@@ -163,6 +167,7 @@ public class HandleCRUDProduct {
         }
         return products;
     }
+
     // select all loai_san_pham
     public ArrayList<Product> selectAllLoaiSanPham() {
         ArrayList<Product> products = new ArrayList<>();
@@ -204,6 +209,7 @@ public class HandleCRUDProduct {
         }
         return false;
     }
+
     // select all products by type product
     public ArrayList<Product> selectAllProductsByTypeProduct(int ID_loai_san_pham) {
         ArrayList<Product> products = new ArrayList<>();
@@ -233,6 +239,7 @@ public class HandleCRUDProduct {
         }
         return products;
     }
+
     public ArrayList<Product> selectAllProductsByNameEquasVegetables() {
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -260,6 +267,34 @@ public class HandleCRUDProduct {
             ex.printStackTrace();
         }
         return products;
+    }
+
+    // select product by ID
+    public Product selectProductByID(int ID) {
+        Product product = new Product();
+        try {
+            // Tạo câu lệnh SQL để lấy sản phẩm theo ID
+            String query = "SELECT san_pham.ID, san_pham.ten_san_pham, san_pham.gia_san_pham, san_pham.mo_ta_san_pham, san_pham.ma_giam_gia, san_pham.so_luong_san_pham, san_pham.hinh_anh_san_pham, loai_san_pham.id as ID_loai_san_pham, loai_san_pham.ten_loai_san_pham, san_pham.ngay_them, san_pham.ngay_cap_nhat FROM san_pham inner join san_pham_and_loai_san_pham on san_pham.ID = san_pham_and_loai_san_pham.ID_san_pham INNER JOIN loai_san_pham on loai_san_pham.id = san_pham_and_loai_san_pham.ID_loai_san_pham WHERE san_pham.ID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                product.setID(rs.getInt("ID"));
+                product.setTen_san_pham(rs.getString("ten_san_pham"));
+                product.setGia_san_pham(rs.getDouble("gia_san_pham"));
+                product.setMo_ta_san_pham(rs.getString("mo_ta_san_pham"));
+                product.setMa_giam_gia(rs.getString("ma_giam_gia"));
+                product.setSo_luong_san_pham(rs.getString("so_luong_san_pham"));
+                product.setHinh_anh_san_pham(rs.getString("hinh_anh_san_pham"));
+                product.setNgay_them(rs.getString("ngay_them"));
+                product.setNgay_cap_nhat(rs.getString("ngay_cap_nhat"));
+                product.setTen_loai_san_pham(rs.getString("ten_loai_san_pham"));
+                product.setID_loai_san_pham(rs.getInt("ID_loai_san_pham"));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return product;
     }
 }
 
