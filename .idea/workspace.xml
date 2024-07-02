@@ -9,40 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be82b9ca-43c0-45b3-b96c-f665f63d6249" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandlePay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HandleCartProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HandleCartProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/OrderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/OrderDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HandleCartProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HandleCartProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/Auth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/checkout.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HandleCartProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HandleCartProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/OrderProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/dao/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/model/Auth.class" afterDir="false" />
-    </list>
+    <list default="true" id="be82b9ca-43c0-45b3-b96c-f665f63d6249" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,7 +208,7 @@
       <workItem from="1719840697917" duration="10289000" />
       <workItem from="1719887936362" duration="5661000" />
       <workItem from="1719894158045" duration="3093000" />
-      <workItem from="1719907771382" duration="11362000" />
+      <workItem from="1719907771382" duration="11753000" />
     </task>
     <servers />
   </component>

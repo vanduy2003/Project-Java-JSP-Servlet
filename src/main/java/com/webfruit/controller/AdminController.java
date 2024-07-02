@@ -27,21 +27,21 @@ public class AdminController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        // check user
-        User user = (User) session.getAttribute("user");
-        if (req.getAttribute("user") == null) {
-            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
-        } else {
-            try {
-                String id = Auth.getInstance().getUserByID(String.valueOf(user.getId())).getVai_tro();
-                if (!id.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
+//        HttpSession session = req.getSession();
+//        // check user
+//        User user = (User) session.getAttribute("user");
+//        if (req.getAttribute("user") == null) {
+//            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
+//        } else {
+//            try {
+//                String id = Auth.getInstance().getUserByID(String.valueOf(user.getId())).getVai_tro();
+//                if (!id.equalsIgnoreCase("admin")) {
+//                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
+//                }
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        }
 
         String url = req.getRequestURI();
         if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/add-user")) {
