@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.webfruit.model.Auth;
 import jakarta.servlet.http.HttpSession;
+import java.util.Objects;
 
 @WebServlet(name = "dang-nhap", urlPatterns = { "/dang-nhap", "/signout" })
 public class AuthController extends HttpServlet {
@@ -22,8 +23,7 @@ public class AuthController extends HttpServlet {
         String path = req.getServletPath();// get path
         if (path.equals("/signout")) {
             HttpSession session = req.getSession();
-            session.removeAttribute("IDUser");
-            session.removeAttribute("fullname");
+            session.removeAttribute("user");
         }
         req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
     }
@@ -51,13 +51,12 @@ public class AuthController extends HttpServlet {
                     req.setAttribute("redirect", true);
                     User user = Auth.getInstance().getUserByID(check);
                     HttpSession session = req.getSession();
-                    session.setAttribute("IDUser", check);
-                    session.setAttribute("fullname", user.getHo_va_ten());
-                    if (user.getVai_tro().equalsIgnoreCase("admin")) {
+                    session.setAttribute("user", user);
+                    if (user.getVai_tro().trim().equals("admin")) {
                         resp.sendRedirect(req.getContextPath() + "/admin");
-                        return;
+                    }else {
+                        resp.sendRedirect(req.getContextPath() + "/trang-chu");
                     }
-                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
                 } else {
                     // login failure
                     req.setAttribute("title", "Thất bại");
@@ -72,7 +71,6 @@ public class AuthController extends HttpServlet {
                 req.setAttribute("message", "Đã xảy ra lỗi. Vui lòng thử lại.");
                 req.setAttribute("messageType", "error");
                 req.setAttribute("icon", "alert-circle");
-                req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
             }
         } else {
             // email hoặc password null
@@ -80,7 +78,7 @@ public class AuthController extends HttpServlet {
             req.setAttribute("message", "Email và mật khẩu không được để trống.");
             req.setAttribute("messageType", "error");
             req.setAttribute("icon", "alert-circle");
-//            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
         }
     }
 

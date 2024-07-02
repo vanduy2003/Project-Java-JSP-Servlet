@@ -1,6 +1,8 @@
 package com.webfruit.controller;
 
 import com.sun.mail.imap.protocol.ID;
+import com.webfruit.dao.Order;
+import com.webfruit.model.HandlePay;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -17,7 +19,7 @@ import com.webfruit.model.UserModel;
 import com.webfruit.model.Auth;
 
 @WebServlet(name = "admin", urlPatterns = { "/admin", "/admin/quan-ly-nguoi-dung",
-        "/admin/quan-ly-nguoi-dung/add-user", "/admin/quan-ly-nguoi-dung/delete", "/admin/quan-ly-nguoi-dung/update" })
+        "/admin/quan-ly-nguoi-dung/add-user", "/admin/quan-ly-nguoi-dung/delete", "/admin/quan-ly-nguoi-dung/update", "/admin/quan-ly-don-hang" })
 public class AdminController extends HttpServlet {
     public AdminController() {
         super();
@@ -26,11 +28,21 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String IDUser = (String) session.getAttribute("IDUser");
-        if (IDUser == null) {
+        // check user
+        User user = (User) session.getAttribute("user");
+        if (req.getAttribute("user") == null) {
             resp.sendRedirect(req.getContextPath() + "/dang-nhap");
-            return;
+        } else {
+            try {
+                String id = Auth.getInstance().getUserByID(String.valueOf(user.getId())).getVai_tro();
+                if (!id.equalsIgnoreCase("admin")) {
+                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
+
         String url = req.getRequestURI();
         if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/add-user")) {
             String ho_dem = req.getParameter("ho-dem");
@@ -52,18 +64,18 @@ public class AdminController extends HttpServlet {
                 return;
             }
             try {
-                User user = new User();
-                user.setHo_dem(ho_dem);
-                user.setTen(ten);
-                user.setHo_va_ten(ho_va_ten);
-                user.setNgay_sinh(ngay_sinh);
-                user.setSo_dien_thoai(so_dien_thoai);
-                user.setEmail(email);
-                user.setMat_khau(mat_khau);
-                user.setDia_chi(dia_chi);
-                user.setVai_tro(vai_tro);
-                user.setChi_tieu(0);
-                UserModel.getInstance().insert(user);
+                User user1 = new User();
+                user1.setHo_dem(ho_dem);
+                user1.setTen(ten);
+                user1.setHo_va_ten(ho_va_ten);
+                user1.setNgay_sinh(ngay_sinh);
+                user1.setSo_dien_thoai(so_dien_thoai);
+                user1.setEmail(email);
+                user1.setMat_khau(mat_khau);
+                user1.setDia_chi(dia_chi);
+                user1.setVai_tro(vai_tro);
+                user1.setChi_tieu(0);
+                UserModel.getInstance().insert(user1);
                 UserModel.getInstance().closeConnection();
                 req.setAttribute("success", "Thêm người dùng thành công");
                 resp.sendRedirect(req.getContextPath() + "/admin/quan-ly-nguoi-dung");
@@ -103,17 +115,17 @@ public class AdminController extends HttpServlet {
                     return;
                 }
 
-                User user = new User();
-                user.setId(Integer.parseInt(idUser));
-                user.setHo_va_ten(ten);
-                user.setChi_tieu(chi_tieu);
-                user.setSo_dien_thoai(so_die_thoai);
-                user.setNgay_sinh(ngay_sinh);
-                user.setEmail(email);
-                user.setMat_khau(mat_khau);
-                user.setDia_chi(dia_chi);
-                user.setVai_tro(vai_tro);
-                UserModel.getInstance().update(user);
+                User user2 = new User();
+                user2.setId(Integer.parseInt(idUser));
+                user2.setHo_va_ten(ten);
+                user2.setChi_tieu(chi_tieu);
+                user2.setSo_dien_thoai(so_die_thoai);
+                user2.setNgay_sinh(ngay_sinh);
+                user2.setEmail(email);
+                user2.setMat_khau(mat_khau);
+                user2.setDia_chi(dia_chi);
+                user2.setVai_tro(vai_tro);
+                UserModel.getInstance().update(user2);
                 UserModel.getInstance().closeConnection();
                 resp.sendRedirect(req.getContextPath() + "/admin/quan-ly-nguoi-dung");
             } catch (Exception ex) {
@@ -124,20 +136,19 @@ public class AdminController extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String IDUser = (String) session.getAttribute("IDUser");
-        if (IDUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
-        } else {
+        if (session.getAttribute("user") != null) {
             try {
-                String id = Auth.getInstance().getUserByID(IDUser).getVai_tro();
-                if (!id.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
+                User user = (User) session.getAttribute("user");
+                if (user.getVai_tro().equals("user")) {
+                    resp.sendRedirect(req.getContextPath() + "/dang-nhap");
                 }
-            } catch (Exception ex) {
+                session.setAttribute("fullname", user.getHo_va_ten());
+            }catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }else {
+            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
         }
-
         try {
             int countUser = UserModel.getInstance().CountUser();
             UserModel.getInstance().closeConnection();
@@ -145,16 +156,10 @@ public class AdminController extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        // check url
+
         String url = req.getRequestURI();
-        if (url.equalsIgnoreCase(req.getContextPath() + "/admin")) {
-            req.setAttribute("home", "home");
-            req.removeAttribute("quanLySanPham");
-            req.removeAttribute("quanLyNguoiDung");
-            req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
-        } else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung")
-                || url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/add-user")
-        ) {
+        if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung")
+                || url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/add-user")) {
             try {
                 ArrayList<User> listUser = UserModel.getInstance().selectAll();
                 UserModel.getInstance().closeConnection();
@@ -165,12 +170,13 @@ public class AdminController extends HttpServlet {
             req.setAttribute("quanLyNguoiDung", "quanLyNguoiDung");
             req.removeAttribute("home");
             req.removeAttribute("quanLySanPham");
+            req.removeAttribute("quanLyDonHang");
             req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
-        }else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/update")) {
+        } else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-nguoi-dung/update")) {
             try {
                 String idUser =  req.getParameter("id");
-                User user = UserModel.getInstance().selectById(Integer.parseInt(idUser));
-                req.setAttribute("userUpdate", user);
+                User user1 = UserModel.getInstance().selectById(Integer.parseInt(idUser));
+                req.setAttribute("userUpdate", user1);
                 req.setAttribute("clickUpdate", "true");
                 ArrayList<User> listUser = UserModel.getInstance().selectAll();
                 UserModel.getInstance().closeConnection();
@@ -181,10 +187,30 @@ public class AdminController extends HttpServlet {
             req.setAttribute("quanLyNguoiDung", "quanLyNguoiDung");
             req.removeAttribute("home");
             req.removeAttribute("quanLySanPham");
-            resp.sendRedirect(req.getContextPath() + "/admin/quan-ly-nguoi-dung");
-        }
+            req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp); // Đừng sử dụng sendRedirect ở đây
+        }else if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-don-hang")) {
 
+            req.removeAttribute("home");
+            req.removeAttribute("quanLySanPham");
+            req.removeAttribute("quanLyNguoiDung");
+            req.removeAttribute("quanLyDonHang");
+            req.setAttribute("quanLyDonHang", "quanLyDonHang");
+            try {
+                ArrayList<Order> listDataOrder = HandlePay.getInstance().selectAllOrder();
+                req.setAttribute("listDataOrder", listDataOrder);
+            }catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp); // Đừng sử dụng sendRedirect ở đây
+        }   else {
+            req.setAttribute("home", "home");
+            req.removeAttribute("quanLySanPham");
+            req.removeAttribute("quanLyNguoiDung");
+            req.removeAttribute("quanLyDonHang");
+            req.getRequestDispatcher("/views/admin/Home.jsp").forward(req, resp);
+        }
     }
+
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

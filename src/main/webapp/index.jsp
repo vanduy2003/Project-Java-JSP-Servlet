@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.webfruit.dao.Product" %>
+<%@ page import="com.webfruit.dao.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,20 +98,19 @@
                         <ul class="dropdown-menu text-center login-margin">
                             <%
                                 HttpSession sc = request.getSession();
-                                String IDUser = (String) sc.getAttribute("IDUser");
-                                String fullname = (String) sc.getAttribute("fullname");
+                                User user = (User) sc.getAttribute("user");
                             %>
 
                             <li>
                                 <%
-                                    if (IDUser != null) {
-                                        out.print(fullname != null ? fullname : "");
+                                    if (user != null) {
+                                        out.print(user != null ? user.getTen() : "");
                                     }
                                 %>
                             </li>
 
                             <%
-                                if (IDUser != null) {
+                                if (user != null) {
                                     // If IDUser is not null, show Sign Out
                             %>
                             <li><a class="dropdown-item" href="signout">Sign Out</a></li>

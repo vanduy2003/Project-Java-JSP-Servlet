@@ -19,7 +19,7 @@ import com.webfruit.dao.User;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "trang-chu", urlPatterns = {"/trang-chu"})
+@WebServlet(name = "trang-chu", urlPatterns = {"/trang-chu", "/"})
 public class HomeController extends HttpServlet {
     public HomeController() {
         super();
@@ -27,12 +27,10 @@ public class HomeController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         HttpSession session = req.getSession();
-        String IDUser = (String) session.getAttribute("IDUser");
-       if (IDUser != null) {
+       if (session.getAttribute("user") != null) {
            try {
-               User user = Auth.getInstance().getUserByID(IDUser);
+               User user = (User) session.getAttribute("user");
                session.setAttribute("fullname", user.getHo_va_ten());
            }catch (Exception ex) {
                 ex.printStackTrace();

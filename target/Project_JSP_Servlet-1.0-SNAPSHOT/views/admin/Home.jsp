@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.webfruit.dao.User" %>
-<%@ page import="com.webfruit.dao.Product" %><%--
+<%@ page import="com.webfruit.dao.Product" %>
+<%@ page import="com.webfruit.dao.Order" %><%--
   Created by IntelliJ IDEA.
   User: My-PC
   Date: 6/23/2024
@@ -316,7 +317,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Các chức năng</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-puzzle-piece"></i><a href="${pageContext.request.contextPath}/admin/quan-ly-san-pham">Quản lý sản phẩm</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Quản lý đơn hàng</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="${pageContext.request.contextPath}/admin/quan-ly-don-hang">Quản lý đơn hàng</a></li>
                         <li><i class="fa fa-bars"></i><a href="${pageContext.request.contextPath}/admin/quan-ly-nguoi-dung">Quản lý người dùng</a></li>
                     </ul>
                 </li>
@@ -1066,6 +1067,125 @@
                     %>
                     <tr>
                         <td colspan="12" class="text-center">Không có sản phẩm nào</td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
+                <div class="clearfix">
+                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div  style="${quanLyDonHang != null ? "display: block" : "display: none"}" class="container">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Quản lý <b>Đơn hàng</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#addProduct" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm đơn hàng</span></a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+                        </th>
+                        <th>ID</th>
+                        <th>Tên người dùng</th>
+                        <th>Ghi chú</th>
+                        <th>Mã giảm giá</th>
+                        <th>Trạng thái đặt hàng</th>
+                        <th>Ngày thêm</th>
+                        <th>Địa chỉ</th>
+                        <th>Số điện thoại</th>
+                        <th colspan="2" class="text-center">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                        ArrayList<Order> listDataOrder = (ArrayList<Order>) request.getAttribute("listDataOrder");
+                        if (listDataOrder != null) {
+                            for (Order order : listDataOrder) {
+
+                    %>
+                    <tr>
+                        <td>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="checkbox" name="options[]" value="1">
+                                            <label for="checkbox1"></label>
+                                        </span>
+                        </td>
+                        <td><%=order.getId()%></td>
+                        <td><%=order.getIdUser()%></td>
+                        <td><%=order.getDesc()%></td>
+                        <td><%=order.getDiscount()%></td>
+                        <td><%=order.getStatus()%></td>
+                        <td><%=order.getDate()%></td>
+                        <td><%=order.getAddress()%></td>
+                        <td><%=order.getPhone()%></td>
+                        <td colspan="2" class="d-flex gap-3">
+                            <a href="#updateProduct" class="edit" data-toggle="modal"><i class="material-icons" onclick="filterDataToUpdateProduct(event)" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <script>
+                                function filterDataToUpdateProduct(event) {
+
+                                    let mainElement = event.target.parentElement.parentElement.parentElement
+                                    let listTd = mainElement.querySelectorAll("td")
+                                    document.getElementById("ProductID").value = listTd[1].innerText
+                                    document.getElementById("update_product_name").value = listTd[2].innerText
+                                    document.getElementById("update_product_gia_san_pham").value = listTd[3].innerText
+                                    document.getElementById("update_product_mo_ta").value = listTd[4].innerText
+                                    document.getElementById("update_product_ma_giam_gia").value = listTd[5].innerText
+                                    document.getElementById("update_product_so_luong_san_pham").value = listTd[6].innerText
+                                    document.getElementById("update_product_duong_dan_anh").value = listTd[7].innerText
+
+                                    var selectElement = document.getElementById("select-option-update-product");
+
+                                    // Lặp qua các tùy chọn trong thẻ <select> để tìm và chọn giá trị tương ứng
+                                    for (var i = 0; i < selectElement.options.length; i++) {
+                                        if (selectElement?.options[i]?.text.trim() === listTd[8]?.innerText) {
+                                            selectElement.options[i].selected = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                function handleClickDeleteProduct(event) {
+                                    event.preventDefault(); // Ngăn chặn chuyển hướng mặc định
+                                    if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
+                                        // Nếu xác nhận là true, tiến hành chuyển hướng
+                                        window.location.href = event.currentTarget.getAttribute('href');
+                                    }
+                                }
+
+
+                            </script>
+                            <a href="${pageContext.request.contextPath}/admin/quan-ly-san-pham/delete?idproduct=<%=order.getId()%>" onclick="handleClickDeleteProduct(event)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    }else {
+
+                    %>
+                    <tr>
+                        <td colspan="12" class="text-center">Không có đơn hàng nào</td>
                     </tr>
                     <%
                         }

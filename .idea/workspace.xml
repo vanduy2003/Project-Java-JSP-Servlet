@@ -10,351 +10,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be82b9ca-43c0-45b3-b96c-f665f63d6249" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandlePay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project_JSP_Servlet.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HandleCartProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HandleCartProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/AnhChiTietSanPham.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/DatHang.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/GioHang.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/LoaiSanPham.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/LoaiSanPhamId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/NguoiDung.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/SanPham.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/SanPhamDatHang.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/SanPhamDatHangId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/entity/TrangThaiNguoiDung.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Handle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandleCRUDProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/HandleCRUDProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/OrderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/OrderDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/dao/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/webfruit/model/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/web/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/web/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AuthController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ForgotPassController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ForgotPasswordController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ForgotPasswordController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HandleCartProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ProductController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/RegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Cart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/ImageDetailProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/OrderProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/ProductType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/UserState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/AnhChiTietSanPham.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/DatHang.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/GioHang.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/LoaiSanPham.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/LoaiSanPhamId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/NguoiDung.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/SanPham.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/SanPhamDatHang.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/SanPhamDatHangId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/entity/TrangThaiNguoiDung.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/Auth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/CommonDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/DBUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/Handle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/HandleCRUDProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/UserModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/hibernate.cfg.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/FastInfoset-1.2.15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/activation-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/antlr-2.7.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/byte-buddy-1.10.22.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/c3p0-0.9.5.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/classmate-1.5.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/dom4j-2.1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/hibernate-commons-annotations-5.1.2.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/hibernate-core-5.4.32.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/istack-commons-runtime-3.0.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/jakarta.persistence-api-2.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/jandex-2.2.3.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/javassist-3.27.0-GA.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/javax.activation-api-1.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/javax.mail-1.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/javax.persistence-api-2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/jaxb-api-2.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/jaxb-runtime-2.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.4.1.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/mchange-commons-java-0.2.19.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-j-8.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.28.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.11.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/stax-ex-1.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/lib/txw2-2.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/Home.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/cs-skin-elastic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/chosen/chosen-sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/chosen/chosen-sprite@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/chosen/chosen.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/chosen/chosen.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/datatable/buttons.bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/datatable/buttons.dataTables.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/datatable/dataTables.bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/lib/vector-map/jqvmap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/css/style.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/fonts/icomoon/icomoon.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/fonts/icomoon/icomoon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/fonts/icomoon/icomoon.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/fonts/icomoon/icomoon.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/fonts/icomoon/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/dashboard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/handle/handleQuanLyNguoiDung.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/chartjs-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/datatables-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/flot-chart-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/fullcalendar-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/gmap-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/peitychart-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/vector-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/init/weather-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/chosen/chosen.jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/chosen/chosen.jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/chosen/chosen.proto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/chosen/chosen.proto.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/buttons.bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/buttons.colVis.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/buttons.flash.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/buttons.html5.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/buttons.print.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/dataTables.bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/dataTables.buttons.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/datatables.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/jquery-1.12.4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/jquery.dataTables.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/jszip.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/pdfmake.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/data-table/vfs_fonts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/gmap/gmapApi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/gmap/gmaps.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/lib/gmap/gmaps.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/vmap.sampledata.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/js/widgets.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/scss/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/scss/style.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/assets/scss/style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/admin.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/64-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/avatar/64-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/logo.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/images/logo2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/tables-basic.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/admin/tables-data.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/404.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/chackout.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/contact.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/forgot-pass.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/avatar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/baner-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/banner-fruits.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/best-product-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/best-product-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/best-product-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/best-product-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/best-product-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/best-product-6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/cart-page-header-img.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/featur-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/featur-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/featur-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/fruite-item-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/fruite-item-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/fruite-item-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/fruite-item-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/fruite-item-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/fruite-item-6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/hero-img-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/hero-img-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/hero-img.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/payment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/single-item.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/testimonial-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/vegetable-item-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/vegetable-item-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/vegetable-item-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/vegetable-item-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/vegetable-item-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/img/vegetable-item-6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/easing/easing.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/easing/easing.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/lightbox/css/lightbox.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/lightbox/images/close.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/lightbox/images/loading.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/lightbox/images/next.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/lightbox/images/prev.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/lightbox/js/lightbox.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/ajax-loader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/owl.carousel.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/owl.carousel.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/owl.theme.default.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/owl.theme.default.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/owl.theme.green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/owl.theme.green.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/assets/owl.video.play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/owl.carousel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/owlcarousel/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/waypoints/links.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/lib/waypoints/waypoints.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/login.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_accordion.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_alert.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_badge.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_breadcrumb.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_button-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_buttons.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_card.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_carousel.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_close.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_containers.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_dropdown.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_forms.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_functions.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_grid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_helpers.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_images.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_list-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_mixins.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_modal.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_nav.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_navbar.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_offcanvas.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_pagination.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_popover.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_progress.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_reboot.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_root.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_spinners.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_tables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_toasts.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_tooltip.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_transitions.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_type.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/bootstrap-grid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/bootstrap-reboot.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/bootstrap-utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/bootstrap.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_floating-labels.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_form-check.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_form-control.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_form-range.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_form-select.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_form-text.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_input-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_labels.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/forms/_validation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/helpers/_clearfix.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/helpers/_colored-links.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/helpers/_position.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/helpers/_ratio.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/helpers/_stretched-link.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/helpers/_text-truncation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/helpers/_visually-hidden.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_alert.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_border-radius.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_box-shadow.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_breakpoints.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_buttons.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_caret.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_clearfix.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_color-scheme.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_container.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_deprecate.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_forms.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_gradients.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_grid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_image.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_list-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_lists.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_pagination.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_reset-text.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_resize.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_table-variants.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_text-truncate.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_transition.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/mixins/_visually-hidden.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/utilities/_api.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/scss/bootstrap/scss/vendor/_rfs.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/shop-detail.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/shop.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/sign-up.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/views/web/testtimonial.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AuthController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ForgotPassController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ForgotPasswordController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ForgotPasswordController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HandleCartProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ProductController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/RegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Cart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/ImageDetailProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Order.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/Home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HandleCartProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HandleCartProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/dao/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/WEB-INF/classes/com/webfruit/model/Auth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/checkout.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Project_JSP_Servlet-1.0-SNAPSHOT/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HandleCartProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HandleCartProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Order.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/OrderProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/ProductType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/UserState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/AnhChiTietSanPham.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/DatHang.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/GioHang.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/LoaiSanPham.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/LoaiSanPhamId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/NguoiDung.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/SanPham.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/SanPhamDatHang.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/SanPhamDatHangId.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/entity/TrangThaiNguoiDung.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/Auth.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/CommonDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/DBUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/Handle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/HandleCRUDProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/UserModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/dao/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/dao/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/webfruit/model/Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/webfruit/model/Auth.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,9 +51,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jspx File" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -551,7 +238,10 @@
       <workItem from="1719754979270" duration="5175000" />
       <workItem from="1719760278175" duration="3725000" />
       <workItem from="1719818054087" duration="1278000" />
-      <workItem from="1719840697917" duration="10067000" />
+      <workItem from="1719840697917" duration="10289000" />
+      <workItem from="1719887936362" duration="5661000" />
+      <workItem from="1719894158045" duration="3093000" />
+      <workItem from="1719907771382" duration="11362000" />
     </task>
     <servers />
   </component>

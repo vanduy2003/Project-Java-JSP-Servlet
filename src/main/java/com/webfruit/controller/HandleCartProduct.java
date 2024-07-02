@@ -1,8 +1,12 @@
 package com.webfruit.controller;
 
+import com.webfruit.dao.Order;
+import com.webfruit.dao.OrderDetail;
 import com.webfruit.dao.Product;
+import com.webfruit.dao.User;
 import com.webfruit.model.Auth;
 import com.webfruit.model.HandleCRUDProduct;
+import com.webfruit.model.HandlePay;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
@@ -16,7 +20,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "cart", urlPatterns = {"/cart", "/add-to-cart", "/remove-from-cart", "/minus-from-cart", "/checkout"})
+@WebServlet(name = "cart", urlPatterns = {"/cart", "/add-to-cart", "/remove-from-cart", "/minus-from-cart", "/checkout", "/buy-products"})
 public class HandleCartProduct extends HttpServlet {
     public HandleCartProduct() {
         super();
@@ -118,9 +122,11 @@ public class HandleCartProduct extends HttpServlet {
                 case "/checkout":
 
                     HttpSession session_auth = req.getSession();
-                    String IDUser = (String) session_auth.getAttribute("IDUser");
-                    if (IDUser == null) {
-                        req.getRequestDispatcher("/views/web/login.jsp").forward(req, resp);
+                    User user = (User) session_auth.getAttribute("user");
+                    // neu chua dang nhap thi chuyen ve trang dang nhap
+                    if (user  == null ) {
+                        resp.sendRedirect(req.getContextPath() + "/dang-nhap");
+                        return;
                     }
                     HttpSession sessionCheckout = req.getSession();
                     ArrayList<Product> cartCheckout = (ArrayList<Product>) sessionCheckout.getAttribute("cart");
@@ -129,6 +135,7 @@ public class HandleCartProduct extends HttpServlet {
                     }
                     req.getRequestDispatcher("checkout.jsp").forward(req, resp);
                     break;
+
             default:
                 // code here
                 break;
@@ -151,7 +158,77 @@ public class HandleCartProduct extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        // check login user
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
+            return;
+        }
+
+
+        String action = req.getServletPath();
+        switch (action) {
+            case "/buy-products":
+                ArrayList<Product> listProduct = (ArrayList<Product>) session.getAttribute("cart");
+
+                User user_data = (User) session.getAttribute("user");
+                if (listProduct.size() > 0 && user_data != null) {
+                    String dia_chi_nhan_hang = req.getParameter("dia_chi_nhan_hang");
+                    String so_dien_thoai = req.getParameter("so_dien_thoai");
+                    String mo_ta = req.getParameter("mo_ta");
+                    // check dia chi nhan hang, so dien thoai
+                    if (dia_chi_nhan_hang == null || so_dien_thoai == null) {
+                        req.setAttribute("toast", "error");
+                        req.getRequestDispatcher("checkout.jsp").forward(req, resp);
+                        return;
+                    }
+                    // them vao bang don hang
+                    try {
+                        Order order = new Order();
+                        order.setIdUser(user_data.getId());
+                        order.setAddress(dia_chi_nhan_hang);
+                        order.setDesc(mo_ta);
+                        order.setDiscount("0");
+                        order.setStatus("Chờ xác nhận");
+                        order.setPhone(so_dien_thoai);
+                        int newIDOrder = HandlePay.getInstance().insertOrder(order);
+                        // lay id don hang vua them
+                       if (newIDOrder == -1) {
+                           req.setAttribute("toast", "error");
+                           req.getRequestDispatcher("checkout.jsp").forward(req, resp);
+                           return;
+                       }else {
+                            req.setAttribute("toast", "success");
+                            int id_order = newIDOrder;
+                            // them vao bang chi tiet don hang
+                            for (Product p : listProduct) {
+                                OrderDetail detailOrder = new OrderDetail();
+                                detailOrder.setId_user(user_data.getId());
+                                detailOrder.setId_product(p.getID());
+                                detailOrder.setQuantity(Integer.parseInt(p.getSo_luong_san_pham()));
+                                detailOrder.setGhi_chu("");
+                                detailOrder.setId_order(id_order);
+                                HandlePay.getInstance().insertOrderDetail(detailOrder);
+
+                            }
+                            // xoa gio hang
+                            session.removeAttribute("cart");
+                            req.setAttribute("quantityProduct", 0);
+                            req.getRequestDispatcher("index.jsp").forward(req, resp);
+                       }
+
+                    } catch (SQLException e) {
+                        System.out.println("Đã xay ra lỗi khi thêm đơn hàng");
+                        throw new RuntimeException(e);
+                    }
+                }
+                break;
+            default:
+                // code here
+                break;
+        }
+
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.webfruit.controller;
 
 import com.webfruit.dao.Product;
+import com.webfruit.dao.User;
 import com.webfruit.model.Auth;
 import com.webfruit.model.HandleCRUDProduct;
 import com.webfruit.model.UserModel;
@@ -25,18 +26,17 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String IDUser = (String) session.getAttribute("IDUser");
-        if (IDUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
-        } else {
+        if (session.getAttribute("user") != null) {
             try {
-                String id = Auth.getInstance().getUserByID(IDUser).getVai_tro();
-                if (!id.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
+                User user = (User) session.getAttribute("user");
+                if (user.getVai_tro().equals("user")) {
+                    resp.sendRedirect(req.getContextPath() + "/dang-nhap");
                 }
-            } catch (Exception ex) {
+            }catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }else {
+            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
         }
         try {
             int countUser = UserModel.getInstance().CountUser();
@@ -55,7 +55,6 @@ public class ProductController extends HttpServlet {
                 ArrayList<Product> listTypeProduct = HandleCRUDProduct.getInstance().selectAllLoaiSanPham();
                 req.setAttribute("listProduct", listProduct);
                 req.setAttribute("listTypeProduct", listTypeProduct);
-
                 HandleCRUDProduct.getInstance().closeConnection();
             }catch (Exception ex) {
                 System.out.println("Đã xảy ra lỗi khi lấy dữ liệu sản phẩm");
@@ -80,20 +79,19 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // check
         HttpSession session = req.getSession();
-        String IDUser = (String) session.getAttribute("IDUser");
-        if (IDUser == null) {
-            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
-        } else {
+        if (session.getAttribute("user") != null) {
             try {
-                String id = Auth.getInstance().getUserByID(IDUser).getVai_tro();
-                if (!id.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect(req.getContextPath() + "/trang-chu");
+                User user = (User) session.getAttribute("user");
+                if (user.getVai_tro().equals("user")) {
+                    resp.sendRedirect(req.getContextPath() + "/dang-nhap");
                 }
-            } catch (Exception ex) {
+                session.setAttribute("fullname", user.getHo_va_ten());
+            }catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }else {
+            resp.sendRedirect(req.getContextPath() + "/dang-nhap");
         }
         String url = req.getRequestURI();
         if (url.equalsIgnoreCase(req.getContextPath() + "/admin/quan-ly-san-pham/add-product")) {
@@ -154,22 +152,9 @@ public class ProductController extends HttpServlet {
             String so_luong_san_pham = req.getParameter("update_product_so_luong_san_pham");
             String hinh_anh_san_pham = req.getParameter("update_product_duong_dan_anh");
             String ID_loai_san_pham = req.getParameter("id-type-product-update");
-            System.out.println("Check ID: " + ID);
-            System.out.println("check ten_san_pham: " + ten_san_pham);
-            System.out.println("check gia_san_pham: " + gia_san_pham);
-            System.out.println("check mo_ta_san_pham: " + mo_ta_san_pham);
-            System.out.println("check ma_giam_gia: " + ma_giam_gia);
-            System.out.println("check so_luong_san_pham: " + so_luong_san_pham);
-            System.out.println("check hinh_anh_san_pham: " + hinh_anh_san_pham);
-            System.out.println("check ID_loai_san_pham: " + ID_loai_san_pham);
-
-            // validate data
-
-
             if (ID == null || ID.equals("") || ten_san_pham == null || ten_san_pham.equals("") || gia_san_pham == null || gia_san_pham.equals("") || mo_ta_san_pham == null || mo_ta_san_pham.equals("") || ma_giam_gia == null || ma_giam_gia.equals("") || so_luong_san_pham == null || so_luong_san_pham.equals("") || hinh_anh_san_pham == null || hinh_anh_san_pham.equals("") || ID_loai_san_pham == null || ID_loai_san_pham.equals("")) {
                 resp.sendRedirect(req.getContextPath() + "/admin/quan-ly-san-pham");
             }
-
             Product product = new Product();
             product.setID(Integer.parseInt(ID));
             product.setTen_san_pham(ten_san_pham);

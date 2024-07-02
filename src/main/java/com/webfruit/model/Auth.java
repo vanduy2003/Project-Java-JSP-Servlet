@@ -38,8 +38,9 @@ public class Auth {
             String query = String.format("SELECT * FROM nguoi_dung WHERE ID = '%d'", Integer.parseInt(ID));
             Statement st = connection.createStatement();
             ResultSet res = st.executeQuery(query);
-            while (res.next()) {
+            if (res.next()) {
                User user = new User();
+               user.setId(res.getInt("ID"));
                user.setTen(res.getString("ten"));
                 user.setHo_dem(res.getString("ho_dem"));
                 user.setHo_va_ten(res.getString("ho_va_ten"));
@@ -49,7 +50,6 @@ public class Auth {
                 user.setNgay_sinh(res.getString("ngay_sinh"));
                 user.setChi_tieu(res.getFloat("chi_tieu"));
                 user.setVai_tro(res.getString("vai_tro"));
-
                 return user;
             }
             return null;
